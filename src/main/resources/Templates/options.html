@@ -30,11 +30,13 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
+                <th>Empresa</th>
                 <th>Precio</th>
             </tr>
             <tr th:each="option : ${options}">
                 <td th:text="${option.id}">Id</td>
                 <td th:text="${option.name}">Name</td>
+                <td th:each= "empresa : ${option.empresa}"><div th:text="${empresa.nombre}"></div></td>
                 <td th:text="${option.price}">Price</td>
                 <td><!-- <a th:href="${ '/option/' + option.id">Ver</a> -->
                     <a th:href="${ '/option/eliminar/' + option.id}">Eliminar</a>

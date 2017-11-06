@@ -1,6 +1,7 @@
 package com.ucbcba.proyecto.proyecto.Controllers;
 
 import com.ucbcba.proyecto.proyecto.Entities.Option;
+import com.ucbcba.proyecto.proyecto.Services.EmpresaService;
 import com.ucbcba.proyecto.proyecto.Services.OptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,12 +17,18 @@ import javax.validation.Valid;
 public class OptionController {
 
     private OptionService optionService;
+    private EmpresaService empresaService;
+
     @Autowired
     public void setOptionService(OptionService optionService){this.optionService = optionService;}
+
+    @Autowired
+    public void setEmpresaService(EmpresaService empresaService){this.empresaService = empresaService;}
 
     @RequestMapping(value = "/option", method = RequestMethod.POST)
     public String save(@Valid Option option, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
+            model.addAttribute("empresas",empresaService.listAllEmpresas());
             return "optionForm";
         }
         optionService.saveOption(option);
@@ -30,26 +37,25 @@ public class OptionController {
     @RequestMapping(value = "/options", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("options",optionService.listAllOptions());
+        model.addAttribute("empresa",empresaService.listAllEmpresas());
         return "options";
     }
     @RequestMapping(value = "/option/new",method = RequestMethod.GET)
     public String newOption(Model model){
         model.addAttribute("option",new Option());
+        model.addAttribute("empresas",empresaService.listAllEmpresas());
         return "optionForm";
-    }
-    @RequestMapping(value = "/option/{id}",method = RequestMethod.GET)
-    public String showOption(@PathVariable Integer id, Model model){
-        model.addAttribute("option", optionService.getOptionById(id));
-        return "option";
     }
     @RequestMapping(value = "/option/eliminar/{id}",method = RequestMethod.GET)
     public String deleteOption(@PathVariable Integer id, Model model){
+        model.addAttribute("empresas",empresaService.listAllEmpresas());
         optionService.deleteOption(id);
         return "redirect:/options";
     }
     @RequestMapping(value = "/option/editar/{id}",method = RequestMethod.GET)
     public String editarOption(@PathVariable Integer id, Model model){
         model.addAttribute("option",optionService.getOptionById(id));
+        model.addAttribute("empresas",empresaService.listAllEmpresas());
         return "optionForm";
     }
 }
