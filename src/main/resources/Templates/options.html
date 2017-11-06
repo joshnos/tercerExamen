@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Options</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #FFE4B5;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFE4B5;
+        }
+    </style>
+</head>
+<body style="background-color:#FDF5E6;">
+
+<a href="/option/new">Agregar option</a>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(options)}">
+        <table class="table table-striped">
+            <caption><h1>Lista de Opciones</h1></caption>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+            </tr>
+            <tr th:each="option : ${options}">
+                <td th:text="${option.id}">Id</td>
+                <td th:text="${option.name}">Name</td>
+                <td th:text="${option.price}">Price</td>
+                <td><!-- <a th:href="${ '/option/' + option.id">Ver</a> -->
+                    <a th:href="${ '/option/eliminar/' + option.id}">Eliminar</a>
+                    <a th:href="${ '/option/editar/' + option.id}">Editar</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
