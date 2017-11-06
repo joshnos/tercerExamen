@@ -11,9 +11,9 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idEmpresa;
 
-    @OneToOne
+    /*@OneToOne
     @JoinColumn(name="idUsuario")
-    private Integer usuario_id;
+    private Integer usuario_id;*/
 
     @NotNull
     @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
