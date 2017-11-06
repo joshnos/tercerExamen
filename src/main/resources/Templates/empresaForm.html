@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Empresa</title>
+</head>
+<body style="background-color:#FDF5E6;">
+    <div class="container">
+        <h2>Detalles de la empresa</h2>
+        <div>
+            <form class="form-horizontal" th:object="${empresa}" th:action="@{/empresa}" method="post">
+                <input type="hidden" th:field="*{idEmpresa}"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Nombre:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{nombre}"/>
+                        <span style="color: red;" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Direccion:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{direccion}"/>
+                        <span style="color: red;" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Error</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Telefono:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{telefono}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Descripcion:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{descripcion}"/>
+                        <span style="color: red;" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Error</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

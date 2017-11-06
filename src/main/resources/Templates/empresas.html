@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Empresa</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #FFE4B5;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFE4B5;
+        }
+    </style>
+</head>
+<body style="background-color:#FDF5E6;">
+
+<a href="/empresa/new"><button type="button" class="btn btn-link">Agregar restaurante</button></a>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(empresas)}">
+        <table class="table table-striped">
+            <caption><h1>Lista de Restaurantes</h1></caption>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+            <tr th:each="empresa : ${empresas}">
+                <td th:text="${empresa.idEmpresa}">Id</td>
+                <td th:text="${empresa.nombre}">descirption</td>
+                <td th:text="${empresa.direccion}">direccion</td>
+                <td th:text="${empresa.telefono}">telefono</td>
+                <td th:text="${empresa.descripcion}">descripcion</td>
+                <td><a th:href="${ '/empresa/' + empresa.idEmpresa}">Ver</a>
+                    <a th:href="${ '/empresa/eliminar/' + empresa.idEmpresa}">Eliminar</a>
+                    <a th:href="${ '/empresa/editar/' + empresa.idEmpresa}">Editar</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
