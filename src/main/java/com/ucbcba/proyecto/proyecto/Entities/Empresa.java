@@ -11,7 +11,11 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idEmpresa;
 
+<<<<<<< HEAD
+    /*@OneToOne
+=======
    /* @OneToOne
+>>>>>>> origin/master
     @JoinColumn(name="idUsuario")
     private Integer usuario_id;*/
 
