@@ -7,5 +7,4 @@ public interface OptionService {
     Option getOptionById(Integer id);
     Option saveOption(Option option);
     void deleteOption(Integer id);
-
 }

@@ -1,6 +1,7 @@
 package com.ucbcba.proyecto.proyecto.Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "option")
@@ -9,7 +10,11 @@ public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private int price;
 
 
