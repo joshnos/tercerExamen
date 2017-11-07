@@ -3,21 +3,15 @@ package com.ucbcba.proyecto.proyecto.Entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
+@Table(name="Empresa")
 public class Empresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idEmpresa;
-
-<<<<<<< HEAD
-    /*@OneToOne
-=======
-   /* @OneToOne
->>>>>>> origin/master
-    @JoinColumn(name="idUsuario")
-    private Integer usuario_id;*/
 
     @NotNull
     @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
@@ -34,6 +28,17 @@ public class Empresa {
     @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
     private String descripcion;
 
+    @OneToMany(mappedBy = "empresa")
+    private Set<Option> Options;
+
+    public Set<Option> getOptions() {
+        return Options;
+    }
+
+    public void setOptions(Set<Option> options) {
+        Options = options;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -45,10 +50,6 @@ public class Empresa {
     public Integer getIdEmpresa() {
         return idEmpresa;
     }
-
-    /*public Integer getUsuario_id() {
-        return usuario_id;
-    }*/
 
     public String getDescripcion() {
         return descripcion;
@@ -78,7 +79,4 @@ public class Empresa {
         this.telefono = telefono;
     }
 
-    /*public void setUsuario_id(Integer usuario_id) {
-        this.usuario_id = usuario_id;
-    }*/
 }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "option")
+@Table(name = "Opciones")
 public class Option {
 
     @Id
@@ -17,6 +17,7 @@ public class Option {
     @NotNull
     private int price;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
