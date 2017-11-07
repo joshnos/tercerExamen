@@ -1,4 +1,4 @@
-package com.ucbcba.taller.entities;
+package com.ucbcba.proyecto.proyecto.Entities;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -6,6 +6,7 @@ import java.util.Set;
 @Entity
 @Table(name = "role")
 public class Role {
+
     private Long id;
     private String name;
     private Set<User> users;

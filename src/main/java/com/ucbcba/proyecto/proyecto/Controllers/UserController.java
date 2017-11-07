@@ -1,10 +1,10 @@
-package com.ucbcba.taller.controllers;
+package com.ucbcba.proyecto.proyecto.Controllers;
 
 
 
-import com.ucbcba.taller.entities.User;
-import com.ucbcba.taller.services.SecurityService;
-import com.ucbcba.taller.services.UserService;
+import com.ucbcba.proyecto.proyecto.Entities.User;
+import com.ucbcba.proyecto.proyecto.Services.SecurityService;
+import com.ucbcba.proyecto.proyecto.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +38,7 @@ public class UserController {
         }
         userService.save(user);
         securityService.autologin(user.getEmail(), user.getPasswordConfirm());
-        return "redirect:/welcome";
+        return "redirect:/bienvenidos";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -46,22 +46,10 @@ public class UserController {
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
-        if (logout != null)
+        if (logout != null){
             model.addAttribute("message", "You have been logged out successfully.");
-
+            return "redirect:/bienvenidos";
+        }
         return "login";
-    }
-
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "welcome";
-    }
-    @RequestMapping(value = {"/admin/"}, method = RequestMethod.GET)
-    public String admin(Model model) {
-        return "welcome";
-    }
-    @RequestMapping(value = {"/bienvenidos"}, method = RequestMethod.GET)
-    public String welcome2(Model model) {
-        return "bienvenidos";
     }
 }

@@ -1,4 +1,6 @@
-package com.ucbcba.taller.entities;
+package com.ucbcba.proyecto.proyecto.Entities;
+
+import com.ucbcba.proyecto.proyecto.Entities.Role;
 
 import javax.persistence.*;
 import java.util.Set;

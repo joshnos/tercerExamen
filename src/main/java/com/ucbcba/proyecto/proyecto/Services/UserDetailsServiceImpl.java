@@ -1,8 +1,8 @@
-package com.ucbcba.taller.services;
+package com.ucbcba.proyecto.proyecto.Services;
 
-import com.ucbcba.taller.entities.Role;
-import com.ucbcba.taller.entities.User;
-import com.ucbcba.taller.repositories.UserRepository;
+import com.ucbcba.proyecto.proyecto.Entities.Role;
+import com.ucbcba.proyecto.proyecto.Entities.User;
+import com.ucbcba.proyecto.proyecto.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

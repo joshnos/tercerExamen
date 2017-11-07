@@ -1,4 +1,4 @@
-package com.ucbcba.taller.services;
+package com.ucbcba.proyecto.proyecto.Services;
 
 public interface SecurityService {
     String findLoggedInUsername();

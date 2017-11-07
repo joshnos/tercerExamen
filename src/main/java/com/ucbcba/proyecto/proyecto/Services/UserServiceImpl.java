@@ -1,9 +1,9 @@
-package com.ucbcba.taller.services;
+package com.ucbcba.proyecto.proyecto.Services;
 
-import com.ucbcba.taller.entities.Role;
-import com.ucbcba.taller.entities.User;
-import com.ucbcba.taller.repositories.RoleRepository;
-import com.ucbcba.taller.repositories.UserRepository;
+import com.ucbcba.proyecto.proyecto.Entities.User;
+import com.ucbcba.proyecto.proyecto.Repositories.RoleRepository;
+import com.ucbcba.proyecto.proyecto.Repositories.UserRepository;
+import com.ucbcba.proyecto.proyecto.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,11 +19,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
+
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>(roleRepository.findAll()));
         userRepository.save(user);
+    }
+
+    @Override
+    public Iterable<User> listAllUser() {
+        return userRepository.findAll();
     }
 
     @Override
