@@ -3,6 +3,7 @@ package com.ucbcba.proyecto.proyecto.Entities;
 import com.ucbcba.proyecto.proyecto.Entities.Role;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -17,7 +18,7 @@ public class User {
     private String password;
     private String passwordConfirm;
     private String name;
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,8 +61,8 @@ public class User {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRoles(Role role) {
+        roles.add(role);
     }
 
     public String getName() {
