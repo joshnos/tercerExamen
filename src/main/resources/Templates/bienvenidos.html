@@ -5,9 +5,14 @@
     <title>Pagina Principal</title>
 </head>
 <body style="background-color:#FAFAD2;">
+
 <div th:if="${email} != 'anonymousUser'" align="right">
+
     <a th:each="role : ${roles}" th:if="${role.name} == 'ADMIN' " class="btn" href="/empresas"><button>Administrar</button></a>
+    <a class="btn" href="/listar"><button>Ver USUARIOS</button></a>
     <a th:text="${name}"></a>
+
+
 </div>
 <div th:if="${email} == 'anonymousUser'" align="right">
     <a  class="btn" href="/registration"><button>Registrar</button></a>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listar</title>
+</head>
+<body style="background-color:#FDF5E6;">
+            <div th:each="user:${user}">
+            <pre th:text="${'          Id: ' +user.id}"></pre>
+            <pre th:text="${'          Email: ' + user.email}"></pre>
+            <pre th:text="${'          Nombre: ' + user.name}"></pre>
+            <pre th:text="${'          Role(1 Usuario privilegiado -2 Usuario Normal): ' + user.id}"></pre>
+        </div>
+
+</body>
+</html>
