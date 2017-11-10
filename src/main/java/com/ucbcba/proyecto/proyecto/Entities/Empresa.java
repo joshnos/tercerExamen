@@ -1,7 +1,6 @@
 package com.ucbcba.proyecto.proyecto.Entities;
-
+;
 import org.hibernate.validator.constraints.Range;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,13 +22,11 @@ public class Empresa {
     @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
     private String direccion;
 
+    @Range(min = 1,max = 5,message = "El valor debe estar entre 1 y 5")
+    private int calificacion;
 
     @NotNull
-    @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
     private int telefono;
-
-    @Range(min=1, max=5,message = "Debe estar entre el rango")
-    private Integer calificacion;
 
     @NotNull
     @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
@@ -86,11 +83,11 @@ public class Empresa {
         this.telefono = telefono;
     }
 
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
-    }
-
     public int getCalificacion() {
         return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
     }
 }
