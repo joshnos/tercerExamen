@@ -2,13 +2,12 @@ package com.ucbcba.proyecto.proyecto.Entities;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-public class Pedido {
+@Entity
+public class  Pedido {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
