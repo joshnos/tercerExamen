@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Empresa</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -22,13 +25,14 @@
 </head>
 <body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
                 background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
-
-<a href="/empresa/new"><button type="button" class="btn btn-link">Agregar restaurante</button></a>
-<a href="/options"><button type="button" class="btn btn-link">Opciones</button></a>
-<div class="container">
+<div class="btn-group btn-group-lg ">
+<a class="btn" href="/empresa/new"><button  type="button" class="btn btn-primary" style="background-color: #F4D03F">Agregar restaurante</button></a>
+<a class="btn" href="/options"><button  type="button" class="btn btn-primary" style="background-color: #F4D03F">Volver </button></a>
+</div>
+    <div class="container">
     <div th:if="${not #lists.isEmpty(empresas)}">
         <table class="table table-striped">
-            <caption><h1>Lista de Restaurantes</h1></caption>
+            <caption><h1 style="color:#FDFEFE">Lista de Restaurantes</h1></caption>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
