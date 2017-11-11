@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PedidoController {
+
     private PedidoService pedidoService;
     @Autowired
     public void setPedidoService(PedidoService pedidoService){this.pedidoService=pedidoService;}
