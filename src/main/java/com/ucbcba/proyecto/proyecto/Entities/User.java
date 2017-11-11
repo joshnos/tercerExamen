@@ -3,6 +3,7 @@ package com.ucbcba.proyecto.proyecto.Entities;
 import com.ucbcba.proyecto.proyecto.Entities.Role;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
@@ -12,12 +13,25 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 public class User {
+
     private Long id;
     private String email;
     private String password;
     private String passwordConfirm;
     private String name;
     private Set<Role> roles;
+
+    private Ciudad ciudad;
+
+    @ManyToOne
+    @JoinColumn(name = "IdCiudad")
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad1) {
+        this.ciudad = ciudad;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -71,4 +85,6 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

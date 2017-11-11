@@ -3,6 +3,7 @@ package com.ucbcba.proyecto.proyecto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,7 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/","/bienvenidos","/registration").permitAll()
-                .antMatchers("/options","/empresas","/option","/option/**","/empresa","/empresa/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET,"/imagenes/**").permitAll()
+                .antMatchers("/options","/empresas","/option","/option/**","/empresa","/empresa/**","/UserList").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

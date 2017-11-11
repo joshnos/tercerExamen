@@ -3,6 +3,7 @@ package com.ucbcba.proyecto.proyecto.Controllers;
 
 
 import com.ucbcba.proyecto.proyecto.Entities.User;
+import com.ucbcba.proyecto.proyecto.Services.CiudadService;
 import com.ucbcba.proyecto.proyecto.Services.SecurityService;
 import com.ucbcba.proyecto.proyecto.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,18 @@ public class UserController {
     @Autowired
     private SecurityService securityService;
 
+    private CiudadService ciudadService;
+
+    @Autowired
+    private void setCiudadService(CiudadService ciudadService){
+        this.ciudadService=ciudadService;
+    }
     //@Autowired
     //private UserValidator userValidator;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registrationInit(Model model) {
+        model.addAttribute("ciudades",ciudadService.listAllCiudades());
         model.addAttribute("user", new User());
         return "registration";
     }
@@ -34,11 +42,17 @@ public class UserController {
     public String registration(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
         ///userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
+            model.addAttribute("ciudades",ciudadService.listAllCiudades());
             return "registration";
         }
         userService.save(user);
         securityService.autologin(user.getEmail(), user.getPasswordConfirm());
         return "redirect:/bienvenidos";
+    }
+    @RequestMapping(value = "/listar",method = RequestMethod.GET)
+    public String root(Model model) {
+        model.addAttribute("user", userService.listAllUser());
+        return "listar";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

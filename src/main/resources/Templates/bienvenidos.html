@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" >
 <head>
     <title>Pagina Principal</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
-<body style="background-color:#FAFAD2;">
-<div th:if="${email} != 'anonymousUser'" align="right">
-    <a th:each="role : ${roles}" th:if="${role.name} == 'ADMIN' " class="btn" href="/empresas"><button>Administrar</button></a>
-    <a th:text="${name}"></a>
+<body th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
+                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
+
+<div class="page-header" style="background-color: #E74C3C;">
+    <div th:if="${email} != 'anonymousUser'" align="right">
+        <div class="btn-group btn-group-lg ">
+            <a th:each="role : ${roles}" th:if="${role.name} == 'ADMIN'" class="btn" href="/empresas"><button type="button" class="btn btn-primary" style="background-color: #F4D03F">Administrar</button></a>
+            <a href="/listar"><button type="button" class="btn btn-primary" style="background-color: #F4D03F">Ver USUARIOS</button></a>
+        </div>
+
+        <a th:text="${name}"></a>
+    </div>
+    <div th:if="${email} == 'anonymousUser'" align="right">
+        <div class="btn-group-lg"  >
+            <a  href="/login"><button type="button" class="btn btn-primary" style="background-color: #F4D03F">Iniciar Sesion</button></a>
+            <a  href="/registration"><button type="button" class="btn btn-primary" style="background-color: #F4D03F">Registrar</button></a>
+        </div>
+    </div>
+    <h1>Bienvenidos</h1>
+
 </div>
-<div th:if="${email} == 'anonymousUser'" align="right">
-    <a  class="btn" href="/registration"><button>Registrar</button></a>
-    <a  class="btn" href="/login"><button>Iniciar Sesion</button></a>
-</div>
-<br/>
-<br/>
-<br/>
+
+<br> </br>
+<br> </br>
+<br> </br>
 <div align="center">
-    <a href="/pedir"><button>Pedir</button></a>
+    <a title="Pedir " href="/pedir">
+        <img th:src="@{/imagenes/Pizza.jpg}" alt="Pedir" class="img-circule"/>
+    </a>
 </div>
 </body>
 </html>

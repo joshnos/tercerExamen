@@ -40,4 +40,10 @@ public class MainController {
         model.addAttribute("email",name);
         return "bienvenidos";
     }
+
+    @RequestMapping(value = "/UserList", method = RequestMethod.GET)
+    public String list(Model model){
+        model.addAttribute("users",userService.listAllUser());
+        return "UserList";
+    }
 }
