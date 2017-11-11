@@ -4,7 +4,8 @@
 
     <title>Empresa</title>
 </head>
-<body style="background-color:#FDF5E6;">
+<body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
+                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
     <b>Nombre:</b><p th:text="${empresa.nombre}"></p>
     <b>Direccion:</b><p th:text="${empresa.direccion}"></p>
     <b>Telefono:</b><p th:text="${empresa.telefono}"></p>

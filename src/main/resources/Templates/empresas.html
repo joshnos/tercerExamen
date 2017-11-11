@@ -20,7 +20,8 @@
         }
     </style>
 </head>
-<body style="background-color:#FDF5E6;">
+<body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
+                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
 
 <a href="/empresa/new"><button type="button" class="btn btn-link">Agregar restaurante</button></a>
 <a href="/options"><button type="button" class="btn btn-link">Opciones</button></a>
