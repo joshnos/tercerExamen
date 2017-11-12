@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 public class  Pedido {
@@ -16,19 +17,16 @@ public class  Pedido {
     @NotNull
     private int precio;
     @NotNull
-    private int  cantidad;
-    @NotNull
     private String direccion;
-
     @NotNull
     @ManyToOne
     private User user;
     @NotNull
     @ManyToOne
     private Empresa empresa;
-    @NotNull
-    @ManyToOne
-    private Option option;
+    @ManyToMany
+    @JoinTable(name = "pedido_option", joinColumns = @JoinColumn(name = "pedido_id"), inverseJoinColumns = @JoinColumn(name = "option_id"))
+    private Set<Option> options;
 
 
     public int getId() {
@@ -45,14 +43,6 @@ public class  Pedido {
 
     public void setPrecio(int precio) {
         this.precio = precio;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 
     public String getDireccion() {
@@ -79,11 +69,11 @@ public class  Pedido {
         this.empresa = empresa;
     }
 
-    public Option getOption() {
-        return option;
+    public Set<Option> getOptions() {
+        return options;
     }
 
-    public void setOption(Option option) {
-        this.option = option;
+    public void setOptions(Set<Option> options) {
+        this.options = options;
     }
 }

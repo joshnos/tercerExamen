@@ -24,7 +24,6 @@
                 background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
 
 <a href="/option/new"><button type="button" class="btn btn-link">Agregar option</button></a>
-<a href="/empresas"><button type="button" class="btn btn-link">restaurantes</button></a>
 <div class="container">
     <div th:if="${not #lists.isEmpty(options)}">
         <table class="table table-striped">
@@ -34,7 +33,7 @@
                 <th>Nombre</th>
                 <th>Empresa</th>
                 <th>Precio</th>
-
+                <th>Opciones</th>
             </tr>
             <tr th:each="option : ${options}">
                 <td th:text="${option.id}">Id</td>
@@ -49,5 +48,6 @@
         </table>
     </div>
 </div>
+<a href="/empresas"><button type="button" class="btn btn-link">Atras</button></a>
 </body>
 </html>

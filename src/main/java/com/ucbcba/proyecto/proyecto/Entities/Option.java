@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Table(name = "Options")
@@ -26,6 +27,9 @@ public class Option {
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+
+    @ManyToMany(mappedBy = "options")
+    private Set<Pedido> pedidos;
 
     public Empresa getEmpresa() {
         return empresa;
@@ -57,5 +61,13 @@ public class Option {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public void setPedidos(Set<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    public Set<Pedido> getPedidos() {
+        return pedidos;
     }
 }

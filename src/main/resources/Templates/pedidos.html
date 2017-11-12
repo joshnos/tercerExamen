@@ -12,15 +12,25 @@
 <body th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
                 background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
 
-
+<br/>
+<br/>
+<br/>
+<br/>
+<div align="center"><font th:text="${empresa.nombre}" size="6" color="white"></font></div>
+<br/>
+<div align="center"><font th:text="${empresa.descripcion}" size="5" color="white"></font></div>
+<br/>
+<div align="left" ><font th:text="${'Calificacion: ' + empresa.calificacion}" size="3" color="white"></font></div>
+<div align="left" ><font th:text="${'Telefono: ' + empresa.telefono}" size="3" color="white"></font></div>
+<div align="left" ><font th:text="${'Direccion: ' + empresa.direccion}" size="3" color="white"></font></div>
 <div class="container">
-    <div class="count-input space-bottom">
-        <a class="incr-btn" data-action="decrease" href="#">–</a>
-        <input class="quantity" type="text" name="quantity" value="1"/>
-        <a class="incr-btn" data-action="increase" href="#">&plus;</a>
-    </div>
+    <form th:action="@{/registrarpedido}" method="POST" class="form-signin">
+        <div class="count-input space-bottom">
+            <a class="incr-btn" data-action="decrease" href="#"><button>-</button></a>
+            <input class="quantity" type="text" name="quantity" value="1"/>
+            <a class="incr-btn" data-action="increase" href="#"><button>+</button></a>
+        </div>
+    </form>
 </div>
-
-
 </body>
 </html>
