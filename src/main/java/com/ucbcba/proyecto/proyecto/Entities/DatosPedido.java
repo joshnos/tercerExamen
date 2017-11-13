@@ -1,6 +1,8 @@
 package com.ucbcba.proyecto.proyecto.Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class DatosPedido {
@@ -8,8 +10,12 @@ public class DatosPedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     int Nit;
+    String razonSocial;
+
+    @NotNull
     long telf;
-    String nombreFactura;
+    @NotNull
+    @Size(min = 1, max = 200, message = "Debe tener entre 1 y 45 caracteres")
     String direccion;
     @ManyToOne
     Pedido pedido;
@@ -39,11 +45,11 @@ public class DatosPedido {
     }
 
     public String getNombreFactura() {
-        return nombreFactura;
+        return razonSocial;
     }
 
-    public void setNombreFactura(String nombreFactura) {
-        this.nombreFactura = nombreFactura;
+    public void setNombreFactura(String razonSocial) {
+        this.razonSocial = razonSocial;
     }
 
     public String getDireccion() {
