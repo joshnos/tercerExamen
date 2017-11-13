@@ -9,13 +9,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class DatosPedidoServiceImpl implements DatosPedidoService {
     private DatosPedidoRepository datosPedidoRepository;
+
+
     @Autowired
-    @Qualifier(value="DatosPedidoRepository")
-    public void setDatosPedidoRepository(DatosPedidoRepository datosPedidoRepository){
-        this.datosPedidoRepository=datosPedidoRepository;
+    @Qualifier(value="datosPedidoRepository")
+    public void setDatosPedidoRepository(DatosPedidoRepository datosPedidoRepository) {
+        this.datosPedidoRepository = datosPedidoRepository;
     }
+
     @Override
     public DatosPedido getDatosPedidoById(Integer id){ return datosPedidoRepository.findOne(id);}
+
     @Override
     public DatosPedido saveDatosPedido(DatosPedido datosPedido) {
         return datosPedidoRepository.save(datosPedido);
