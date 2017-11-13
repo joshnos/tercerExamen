@@ -9,7 +9,7 @@ public class DatosPedido {
     int id;
     int Nit;
     long telf;
-    String nombreFactura;
+    String razonSocial;
     String direccion;
     @ManyToOne
     Pedido pedido;
@@ -39,11 +39,11 @@ public class DatosPedido {
     }
 
     public String getNombreFactura() {
-        return nombreFactura;
+        return razonSocial;
     }
 
     public void setNombreFactura(String nombreFactura) {
-        this.nombreFactura = nombreFactura;
+        this.razonSocial = nombreFactura;
     }
 
     public String getDireccion() {
