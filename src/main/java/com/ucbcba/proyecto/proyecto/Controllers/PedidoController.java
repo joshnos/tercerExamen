@@ -41,5 +41,11 @@ public class PedidoController {
         model.addAttribute("empresas",empresaService.listAllEmpresas());
         return "ListaPedidos";
     }
+    @RequestMapping(value = "/pedir", method = RequestMethod.GET)
+    public String RealizarPedido(Model model) {
+        model.addAttribute("empresas",empresaService.listAllEmpresas());
+        return  "empresasPedido";
+
+    }
 
 }

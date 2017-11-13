@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>Pagina Principal</title>
+    <style>
+        tr:nth-child(even) {
+            background-color: #FFE4B5;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body  th:bgcolor="${FF0000} ">
+<div class="container">
+    <div th:if="${not #lists.isEmpty(empresas)}">
+        <table class="table table-striped">
+            <caption><h1>Restaurantes</h1></caption>
+            <tr>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Descripcion</th>
+                <th>Calificacion</th>
+            </tr>
+            <tr th:each="empresa : ${empresas}">
+                <td th:text="${empresa.nombre}">nombre</td>
+                <td th:text="${empresa.direccion}">direccion</td>
+                <td th:text="${empresa.telefono}">telefono</td>
+                <td th:text="${empresa.descripcion}">descripcion</td>
+                <td th:text="${empresa.calificacion}">calificacion</td>
+                <td><a th:href="${ '/pedidos' }">Pedir</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
