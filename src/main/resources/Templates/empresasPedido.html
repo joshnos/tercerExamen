@@ -13,11 +13,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<body  th:bgcolor="${FF0000} ">
+<body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
+                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
 <div class="container">
     <div th:if="${not #lists.isEmpty(empresas)}">
         <table class="table table-striped">
-            <caption><h1>Restaurantes</h1></caption>
+            <caption  ><h1>Restaurantes</h1></caption>
             <tr>
                 <th>Nombre</th>
                 <th>Direccion</th>

@@ -2,11 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Pedidos</title>
+    <title>Lista de pedidos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
-<body>
+<body th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
+                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
+
 <div th:each="empresa : ${empresas}" align="center">
-    <a  th:href="${'/pedido/'+empresa.idEmpresa}"><button type="button" class="btn btn-primary" style="background-color: #F4D03F" th:text="${empresa.nombre}"></button></a>
+      <a class="btn" th:href="${'/pedido/'+empresa.idEmpresa}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #F4D03F" th:text="${empresa.nombre}"></button></a>
 </div>
 </body>
 </html>
