@@ -39,13 +39,6 @@ public class PedidoController {
     @RequestMapping(value="/Lista_de_pedidos")
     public String Listar(Model model){
         model.addAttribute("empresas",empresaService.listAllEmpresas());
-        return "ListaPedidos";
+        return "ListarRestaurantes";
     }
-    @RequestMapping(value = "/pedir", method = RequestMethod.GET)
-    public String RealizarPedido(Model model) {
-        model.addAttribute("empresas",empresaService.listAllEmpresas());
-        return  "empresasPedido";
-
-    }
-
 }
