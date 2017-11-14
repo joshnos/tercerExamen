@@ -10,16 +10,11 @@ public class DatosPedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     int Nit;
-    String razonSocial;
-
     @NotNull
     long telf;
-<<<<<<< HEAD
     @NotNull
     @Size(min = 1, max = 200, message = "Debe tener entre 1 y 45 caracteres")
-=======
     String razonSocial;
->>>>>>> 6c9155f602d1df2c74228185f82b7db9aadee4a5
     String direccion;
     @ManyToOne
     Pedido pedido;
@@ -52,13 +47,8 @@ public class DatosPedido {
         return razonSocial;
     }
 
-<<<<<<< HEAD
     public void setNombreFactura(String razonSocial) {
         this.razonSocial = razonSocial;
-=======
-    public void setNombreFactura(String nombreFactura) {
-        this.razonSocial = nombreFactura;
->>>>>>> 6c9155f602d1df2c74228185f82b7db9aadee4a5
     }
 
     public String getDireccion() {
