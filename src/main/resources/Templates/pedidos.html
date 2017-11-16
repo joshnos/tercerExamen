@@ -23,7 +23,16 @@
 <div align="left" ><font th:text="${'Calificacion: ' + empresa.calificacion}" size="3" color="white"></font></div>
 <div align="left" ><font th:text="${'Telefono: ' + empresa.telefono}" size="3" color="white"></font></div>
 <div align="left" ><font th:text="${'Direccion: ' + empresa.direccion}" size="3" color="white"></font></div>
-<div class="container">
+<div align="left" ><div th:each= "option:   ${empresa.Options}"><font th:text="${option.name}" size="3" color="white">
+    <div class="form-group">
+        <div class="col-sm-10">
+            <input type="text" class="form-control" th:field="*{cantidad}"/>
+            <span style="color: red;" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Error</span>
+        </div>
+    </div>
+</font></div></div>
+
+ <!-- <div class="container">
     <form th:action="@{/registrarpedido}" method="POST" class="form-signin">
         <div class="count-input space-bottom">
             <a class="incr-btn" data-action="decrease" href="#"><button>-</button></a>
@@ -31,6 +40,7 @@
             <a class="incr-btn" data-action="increase" href="#"><button>+</button></a>
         </div>
     </form>
-</div>
+</div> -->
+
 </body>
 </html>
