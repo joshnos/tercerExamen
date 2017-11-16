@@ -28,9 +28,6 @@ public class Option {
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-    @ManyToMany(mappedBy = "options")
-    private Set<Pedido> pedidos;
-
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -63,11 +60,4 @@ public class Option {
         this.price = price;
     }
 
-    public void setPedidos(Set<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
-
-    public Set<Pedido> getPedidos() {
-        return pedidos;
-    }
 }

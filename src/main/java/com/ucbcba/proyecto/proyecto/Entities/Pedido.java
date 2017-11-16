@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 @Entity
@@ -13,7 +16,6 @@ public class  Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  int id;
-
     @NotNull
     private int precio;
     @NotNull
@@ -24,10 +26,6 @@ public class  Pedido {
     @NotNull
     @ManyToOne
     private Empresa empresa;
-    @ManyToMany
-    @JoinTable(name = "pedido_option", joinColumns = @JoinColumn(name = "pedido_id"), inverseJoinColumns = @JoinColumn(name = "option_id"))
-    private Set<Option> options;
-
 
     public int getId() {
         return id;
@@ -69,11 +67,4 @@ public class  Pedido {
         this.empresa = empresa;
     }
 
-    public Set<Option> getOptions() {
-        return options;
-    }
-
-    public void setOptions(Set<Option> options) {
-        this.options = options;
-    }
 }
