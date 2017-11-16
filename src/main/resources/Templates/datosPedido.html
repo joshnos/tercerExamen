@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <title>Pagina Principal</title>
+    <title>Factura</title>
     <style>
         tr:nth-child(even) {
             background-color: #FFE4B5;
@@ -15,26 +15,48 @@
 </head>
 <body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
                 background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
+
+    <h1 align="center" style="color:white;">FACTURA</h1>
+</br>
+</br>
+</br>
+</br>
+</br>
 <div class="container">
     <div th:if="${not #lists.isEmpty(empresas)}">
-        <table class="table table-striped">
-            <caption  ><h1>Restaurantes</h1></caption>
-            <tr>
-                <th>Nombre</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Descripcion</th>
-                <th>Calificacion</th>
-            </tr>
-            <tr th:each="empresa : ${empresas}">
-                <td th:text="${empresa.nombre}">nombre</td>
-                <td th:text="${empresa.direccion}">direccion</td>
-                <td th:text="${empresa.telefono}">telefono</td>
-                <td th:text="${empresa.descripcion}">descripcion</td>
-                <td th:text="${empresa.calificacion}">calificacion</td>
-                <td><a th:href="${ '/pedidos' }">Pedir</a>
-                </td>
-            </tr>
+
+        <form class="form-horizontal" th:object="${DatosPedido}" th:action="@{//{id}/factura}" method="post">
+
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Razon Social:</label>
+                <input type="text" class="form-control" th:field="*{razonSocial}"/>
+                <span style="color: red;" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}">Error</span>
+
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">NIT:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{Nit}"/>
+                    <span style="color: red;" th:if="${#fields.hasErrors('Nit')}" th:errors="*{Nit}">Error</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Telefono:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{telf}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Direccion:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{direccion}"/>
+                    <span style="color: red;" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Error</span>
+                </div>
+            </div>
+        </form>
+
+            <button type="submit" class="btn btn-primary" style="background-color: #F4D03F">ACEPTAR</button>
         </table>
     </div>
 </div>
