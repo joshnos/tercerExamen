@@ -9,18 +9,18 @@ import javax.validation.constraints.Size;
 public class DatosPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    int Nit;
+    private int id;
+    private int Nit;
 
     @NotNull
-    long telf;
+    private long telf;
 
     @NotNull
     @Size(min = 1, max = 200, message = "Debe tener entre 1 y 45 caracteres")
-    String razonSocial;
-    String direccion;
+    private String razonSocial;
+    private String direccion;
     @ManyToOne
-    Pedido pedido;
+    private Pedido pedido;
 
     public int getId() {
         return id;

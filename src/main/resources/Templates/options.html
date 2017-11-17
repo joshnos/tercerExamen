@@ -9,7 +9,7 @@
 <body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
                 background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
 
-<a href="/option/new"><button type="button" class="btn btn-link">Agregar option</button></a>
+<a href="/admin/option/new"><button type="button" class="btn btn-link">Agregar option</button></a>
 <div class="container">
     <div th:if="${not #lists.isEmpty(options)}">
         <table class="table table-striped">
@@ -27,13 +27,13 @@
                 <td th:each= "empresa : ${option.empresa}"><div th:text="${empresa.nombre}"></div></td>
                 <td th:text="${option.price}">Price</td>
                 <td><!-- <a th:href="${ '/option/' + option.id">Ver</a> -->
-                    <a th:href="${ '/option/eliminar/' + option.id}">Eliminar</a>
-                    <a th:href="${ '/option/editar/' + option.id}">Editar</a>
+                    <a th:href="${ '/admin/option/eliminar/' + option.id}">Eliminar</a>
+                    <a th:href="${ '/admin/option/editar/' + option.id}">Editar</a>
                 </td>
             </tr>
         </table>
     </div>
 </div>
-<a href="/empresas"><button type="button" class="btn btn-link">Atras</button></a>
+<a href="/admin/empresas"><button type="button" class="btn btn-link">Atras</button></a>
 </body>
 </html>

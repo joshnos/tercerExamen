@@ -25,7 +25,7 @@
 </head>
 <body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
                 background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
-<a class="btn" href="/empresa/new"><button type="button" class="btn btn-primary" style="background-color: #F4D03F ">Agregar restaurante</button></a>
+<a class="btn" href="/admin/empresa/new"><button type="button" class="btn btn-primary" style="background-color: #F4D03F ">Agregar restaurante</button></a>
 
 <div class="container">
     <div th:if="${not #lists.isEmpty(empresas)}">
@@ -47,15 +47,15 @@
                 <td th:text="${empresa.telefono}">telefono</td>
                 <td th:text="${empresa.descripcion}">descripcion</td>
                 <td th:text="${empresa.calificacion}">calificacion</td>
-                <td><a th:href="${ '/empresa/' + empresa.idEmpresa}">Ver</a>
-                    <a th:href="${ '/empresa/eliminar/' + empresa.idEmpresa}">Eliminar</a>
-                    <a th:href="${ '/empresa/editar/' + empresa.idEmpresa}">Editar</a>
+                <td><a th:href="${ '/admin/empresa/' + empresa.idEmpresa}">Ver</a>
+                    <a th:href="${ '/admin/empresa/eliminar/' + empresa.idEmpresa}">Eliminar</a>
+                    <a th:href="${ '/admin/empresa/editar/' + empresa.idEmpresa}">Editar</a>
                 </td>
             </tr>
         </table>
     </div>
 </div>
-<a class="btn" href="/options"><button type="button" class="btn btn-primary" style="background-color: #F4D03F ">Agregar opciones de menu</button></a>
+<a class="btn" href="/admin/options"><button type="button" class="btn btn-primary" style="background-color: #F4D03F ">Agregar opciones de menu</button></a>
 <div>
     <a class="btn" href="/bienvenidos"><button type="button" class="btn btn-primary" style="background-color: #F4D03F ">Atras</button></a>
 </div>

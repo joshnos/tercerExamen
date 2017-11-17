@@ -1,0 +1,63 @@
+body {
+    background:url(../imagenes/fondoPizza.jpg);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    background-attachment: fixed;
+    background-possition: center;
+}
+.page-header {
+   position:absolute;
+   top:0;
+   bottom:0;
+   right:0;
+   left:0;
+   background:rgba(0, 0, 0, 0.5);
+   height:100px;
+}
+h1 {
+   color:white;
+   font-family:"Comic Sans MS";
+}
+.nombre{
+   color:white;
+   font-size:20px;
+   font-weight:bold;
+   padding: 2px 5px;
+}
+.btn-group .btn {
+    background-color: #c61114; /* Red */
+    border: none;
+    color: white;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    float: right;
+}
+
+.btn-group .btn:hover {
+    background-color: #9b0f11;
+}
+
+.btn-pedir{
+    position:absolute;
+    top:200px;
+    left:40%;
+    display: inline-block;
+    padding: 140px 150px;
+    cursor: pointer;
+    background:url(../imagenes/Pizza.png);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #9b0f11;
+}
+
+.btn-pedir:hover{
+    background:url(../imagenes/PizzaPress.png);
+    box-shadow: 0 5px #9b0f11;
+}
+
+.btn-pedir:active{
+    box-shadow:none;
+}

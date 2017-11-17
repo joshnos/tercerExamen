@@ -61,7 +61,7 @@ public class UserController {
         securityService.autologin(user.getEmail(), user.getPasswordConfirm());
         return "redirect:/bienvenidos";
     }
-    @RequestMapping(value = "/listar",method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/listar",method = RequestMethod.GET)
     public String root(Model model) {
         model.addAttribute("user", userService.listAllUser());
         return "listar";

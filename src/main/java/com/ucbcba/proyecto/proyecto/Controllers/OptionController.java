@@ -25,34 +25,34 @@ public class OptionController {
     @Autowired
     public void setEmpresaService(EmpresaService empresaService){this.empresaService = empresaService;}
 
-    @RequestMapping(value = "/option", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/option", method = RequestMethod.POST)
     public String save(@Valid Option option, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             model.addAttribute("empresas",empresaService.listAllEmpresas());
             return "optionForm";
         }
         optionService.saveOption(option);
-        return "redirect:/options";
+        return "redirect:/admin/options";
     }
-    @RequestMapping(value = "/options", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/options", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("options",optionService.listAllOptions());
         model.addAttribute("empresa",empresaService.listAllEmpresas());
         return "options";
     }
-    @RequestMapping(value = "/option/new",method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/option/new",method = RequestMethod.GET)
     public String newOption(Model model){
         model.addAttribute("option",new Option());
         model.addAttribute("empresas",empresaService.listAllEmpresas());
         return "optionForm";
     }
-    @RequestMapping(value = "/option/eliminar/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/option/eliminar/{id}",method = RequestMethod.GET)
     public String deleteOption(@PathVariable Integer id, Model model){
         model.addAttribute("empresas",empresaService.listAllEmpresas());
         optionService.deleteOption(id);
         return "redirect:/options";
     }
-    @RequestMapping(value = "/option/editar/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/option/editar/{id}",method = RequestMethod.GET)
     public String editarOption(@PathVariable Integer id, Model model){
         model.addAttribute("option",optionService.getOptionById(id));
         model.addAttribute("empresas",empresaService.listAllEmpresas());
