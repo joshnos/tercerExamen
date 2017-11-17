@@ -54,9 +54,6 @@ public class UserController {
             model.addAttribute("ciudades",ciudadService.listAllCiudades());
             return "registration";
         }
-        Set<Role> Roles = new HashSet<>();
-        Roles.add(rolesService.getRoleById(2));
-        user.setRoles(Roles);
         userService.save(user);
         securityService.autologin(user.getEmail(), user.getPasswordConfirm());
         return "redirect:/bienvenidos";
@@ -79,4 +76,5 @@ public class UserController {
 
         return "login";
     }
+
 }

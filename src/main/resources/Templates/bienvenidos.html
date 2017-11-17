@@ -11,12 +11,13 @@
 <body>
 
 <div class="page-header">
-    <div th:if="${email} != 'anonymousUser'" align="right">
-        <div class="btn-group" th:each="role : ${roles}" th:if="${role.name} == 'ADMIN'">
+    <div class="btn-group" th:if="${email} != 'anonymousUser'" align="right">
+        <div th:each="role : ${roles}" th:if="${role.name} == 'ADMIN'">
             <a class="btn" href="/admin/empresas">Administrar</a>
             <a class="btn" href="/admin/listar">Ver Usuarios</a>
         </div>
         <a class="nombre" th:text="${name}"></a>
+        <a class="btn" href="/logout">logout</a>
     </div>
     <div th:if="${email} == 'anonymousUser'" align="right">
         <div class="btn-group">
