@@ -29,6 +29,10 @@ public class Empresa {
     private int telefono;
 
     @NotNull
+    private String image;
+
+
+    @NotNull
     @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
     private String descripcion;
 
@@ -89,5 +93,13 @@ public class Empresa {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

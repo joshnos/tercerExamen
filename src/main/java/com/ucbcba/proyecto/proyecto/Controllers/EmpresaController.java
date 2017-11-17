@@ -51,7 +51,7 @@ public class EmpresaController {
     @RequestMapping(value = "/admin/empresa/eliminar/{id}",method = RequestMethod.GET)
     public String deleteEmpresa(@PathVariable Integer id, Model model){
         empresaService.deleteEmpresa(id);
-        return "redirect:/empresas";
+        return "redirect:/admin/empresas";
     }
 
     @RequestMapping(value = "/admin/empresa/editar/{id}",method = RequestMethod.GET)

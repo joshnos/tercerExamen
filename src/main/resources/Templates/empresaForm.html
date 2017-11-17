@@ -11,7 +11,7 @@
     <div class="container">
         <h2>Detalles de la empresa</h2>
         <div>
-            <form class="form-horizontal" th:object="${empresa}" th:action="@{/empresa}" method="post">
+            <form class="form-horizontal" th:object="${empresa}" th:action="@{/admin/empresa}" method="post">
                 <input type="hidden" th:field="*{idEmpresa}"/>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Nombre:</label>
@@ -45,6 +45,12 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" th:field="*{calificacion}"/>
                         <span style="color: red;" th:if="${#fields.hasErrors('calificacion')}" th:errors="*{calificacion}">Error</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">URL Imagen:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{image}"/>
                     </div>
                 </div>
                 <div class="row">

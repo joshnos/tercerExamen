@@ -50,7 +50,7 @@ public class OptionController {
     public String deleteOption(@PathVariable Integer id, Model model){
         model.addAttribute("empresas",empresaService.listAllEmpresas());
         optionService.deleteOption(id);
-        return "redirect:/options";
+        return "redirect:/admin//options";
     }
     @RequestMapping(value = "/admin/option/editar/{id}",method = RequestMethod.GET)
     public String editarOption(@PathVariable Integer id, Model model){
