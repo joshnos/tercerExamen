@@ -19,6 +19,7 @@
                 <th>Nombre</th>
                 <th>Empresa</th>
                 <th>Precio</th>
+                <th>Imagen</th>
                 <th>Opciones</th>
             </tr>
             <tr th:each="option : ${options}">
@@ -26,6 +27,7 @@
                 <td th:text="${option.name}">Name</td>
                 <td th:each= "empresa : ${option.empresa}"><div th:text="${empresa.nombre}"></div></td>
                 <td th:text="${option.price}">Price</td>
+                <td><img class="info" th:src="${option.image}" alt="Paris" width="50" height="50" /></td>
                 <td><!-- <a th:href="${ '/option/' + option.id">Ver</a> -->
                     <a th:href="${ '/admin/option/eliminar/' + option.id}">Eliminar</a>
                     <a th:href="${ '/admin/option/editar/' + option.id}">Editar</a>

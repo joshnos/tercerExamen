@@ -13,6 +13,7 @@ public class Opcion_Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int IdOpcionPedido;
 
+
     @NotNull
     @ManyToOne
     private Pedido pedido;

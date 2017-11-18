@@ -27,7 +27,7 @@ public class Opcion_PedidoServiceImpl implements Opcion_PedidoService{
     }
 
     @Override
-    public Opcion_Pedido saveEmpresa(Opcion_Pedido opcion_pedido) {
+    public Opcion_Pedido saveOpcion_Pedido(Opcion_Pedido opcion_pedido) {
         return opcion_pedidoRepository.save(opcion_pedido);
     }
 

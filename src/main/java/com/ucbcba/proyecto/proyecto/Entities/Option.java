@@ -23,6 +23,8 @@ public class Option {
     @Range(min=1,max=200, message = "Debe tener un valor entre 1 y 200")
     private int price;
 
+    private String image;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "empresa_id")
@@ -60,4 +62,11 @@ public class Option {
         this.price = price;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

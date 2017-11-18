@@ -27,8 +27,7 @@ public class Empresa {
 
     @NotNull
     private int telefono;
-
-    @NotNull
+    
     private String image;
 
 
