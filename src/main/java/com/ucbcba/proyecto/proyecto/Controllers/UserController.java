@@ -60,7 +60,7 @@ public class UserController {
     }
     @RequestMapping(value = "/admin/listar",method = RequestMethod.GET)
     public String root(Model model) {
-        model.addAttribute("user", userService.listAllUser());
+        model.addAttribute("users", userService.listAllUser());
         return "listar";
     }
 

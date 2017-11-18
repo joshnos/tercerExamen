@@ -1,0 +1,64 @@
+body {
+    background-image: url(../imagenes/fondoPizza.jpg);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    background-attachment: fixed;
+    background-possition: center;
+    background-color:#FAFAD2;
+}
+
+/* Bordered form */
+.box {
+    width: 30%;
+    margin: 10% 35%;
+    background:rgba(0, 0, 0, 0.5);
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #c61114;
+    color: white;
+    padding: 14px 25px;
+    margin: 8px 10%;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}
+
+label{
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    text-align:center;
+}
+
+h1{
+    color:white;
+    font-weight:bold;
+    text-align:center;
+}
+
+.remember-me{
+    margin: 8px 10%;
+    color:white;
+}

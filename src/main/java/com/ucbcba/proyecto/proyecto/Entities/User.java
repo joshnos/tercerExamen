@@ -20,7 +20,6 @@ public class User {
     private String passwordConfirm;
     private String name;
     private Set<Role> roles;
-
     private Ciudad ciudad;
 
     @ManyToOne
