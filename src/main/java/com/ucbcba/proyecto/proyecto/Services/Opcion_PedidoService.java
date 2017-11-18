@@ -7,7 +7,7 @@ public interface Opcion_PedidoService {
 
     Opcion_Pedido getOpcion_PedidoById(Integer id);
 
-    Opcion_Pedido saveEmpresa(Opcion_Pedido opcion_pedido);
+    Opcion_Pedido saveOpcion_Pedido(Opcion_Pedido opcion_pedido);
 
     void deleteOpcion_Pedido(Integer id);
 }

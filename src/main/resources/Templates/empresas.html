@@ -38,6 +38,7 @@
                 <th>Telefono</th>
                 <th>Descripcion</th>
                 <th>Calificacion</th>
+                <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
             <tr th:each="empresa : ${empresas}">
@@ -47,6 +48,7 @@
                 <td th:text="${empresa.telefono}">telefono</td>
                 <td th:text="${empresa.descripcion}">descripcion</td>
                 <td th:text="${empresa.calificacion}">calificacion</td>
+                <td><img class="info" th:src="${empresa.image}" alt="Paris" width="50" height="50" /></td>
                 <td><a th:href="${ '/admin/empresa/' + empresa.idEmpresa}">Ver</a>
                     <a th:href="${ '/admin/empresa/eliminar/' + empresa.idEmpresa}">Eliminar</a>
                     <a th:href="${ '/admin/empresa/editar/' + empresa.idEmpresa}">Editar</a>

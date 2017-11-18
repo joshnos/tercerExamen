@@ -21,6 +21,7 @@ public class  Pedido {
     @NotNull
     private String direccion;
     @NotNull
+
     @ManyToOne
     private User user;
     @NotNull

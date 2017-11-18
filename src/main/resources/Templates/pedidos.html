@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" >
-<head>
+<head lang="en">
+
     <title>Pedidos</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-</head>
 
+</head>
 <body th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
                 background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
 
-<br/>
-<br/>
-<br/>
-<br/>
-<div align="center"><font th:text="${empresa.nombre}" size="6" color="white"></font></div>
-<br/>
-<div align="center"><font th:text="${empresa.descripcion}" size="5" color="white"></font></div>
-<br/>
-<div align="left" ><font th:text="${'Calificacion: ' + empresa.calificacion}" size="3" color="white"></font></div>
-<div align="left" ><font th:text="${'Telefono: ' + empresa.telefono}" size="3" color="white"></font></div>
-<div align="left" ><font th:text="${'Direccion: ' + empresa.direccion}" size="3" color="white"></font></div>
-<div align="left" ><div th:each= "option:   ${empresa.Options}"><font th:text="${option.name}" size="3" color="white">
-    <div class="form-group">
-        <div class="col-sm-10">
-            <input type="text" class="form-control" th:field="*{cantidad}"/>
-            <span style="color: red;" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Error</span>
-        </div>
-    </div>
-</font></div></div>
+<div class="container">
+    <div>
+        <form class="form-horizontal" th:object="${pedido}" th:action="@{/pedido}" method="post">
 
- <!-- <div class="container">
-    <form th:action="@{/registrarpedido}" method="POST" class="form-signin">
-        <div class="count-input space-bottom">
-            <a class="incr-btn" data-action="decrease" href="#"><button>-</button></a>
-            <input class="quantity" type="text" name="quantity" value="1"/>
-            <a class="incr-btn" data-action="increase" href="#"><button>+</button></a>
-        </div>
-    </form>
-</div> -->
+            <input type="hidden" th:field="*{id}"/>
+            <div align="center"><font th:text="${empresa.nombre}" size="6" color="white"></font></div>
+            <div align="center"><font th:text="${empresa.descripcion}" size="5" color="white"></font></div>
+            <div align="left" ><font th:text="${'Calificacion: ' + empresa.calificacion}" size="3" color="white"></font></div>
+            <div align="left" ><font th:text="${'Telefono: ' + empresa.telefono}" size="3" color="white"></font></div>
+            <div align="left" ><font th:text="${'Direccion: ' + empresa.direccion}" size="3" color="white"></font></div>
+            <div align="left" >
+                <div th:each= "option:   ${empresa.Options}">
+                    <font th:text="${option.name}" size="3" color="white"></font>
+                    <img class="info" th:src="${option.image}" alt="Paris" width="100" height="100" />
+                    <!--<div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{cantidad}"/>
+                            <span style="color: red;" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}">Error</span>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+            <!-- <div class="container">
+               <form th:action="@{/registrarpedido}" method="POST" class="form-signin">
+                   <div class="count-input space-bottom">
+                       <a class="incr-btn" data-action="decrease" href="#"><button>-</button></a>
+                       <input class="quantity" type="text" name="quantity" value="1"/>
+                       <a class="incr-btn" data-action="increase" href="#"><button>+</button></a>
+                   </div>
+               </form>
+           </div> -->
+
+            <div class="row">
+                <button type="submit" class="btn btn-default">PEDIR</button>
+            </div>
+
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
