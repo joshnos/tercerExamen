@@ -1,8 +1,7 @@
 package com.ucbcba.proyecto.proyecto.Controllers;
 
 import com.ucbcba.proyecto.proyecto.Entities.DatosPedido;
-import com.ucbcba.proyecto.proyecto.Entities.Pedido;
-import com.ucbcba.proyecto.proyecto.Entities.DatosPedido;
+
 import com.ucbcba.proyecto.proyecto.Services.DatosPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.validation.Valid;
 
@@ -23,7 +21,7 @@ public class DatosPedidoController {
         this.datosPedidoService=datosPedidoService;
         }
 
-    @RequestMapping(value = "/{id}/factura",method = RequestMethod.POST)
+    @RequestMapping(value = "/{pedido.id}/factura",method = RequestMethod.POST)
     public String save(@Valid DatosPedido datosPedido, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "datosPedido";

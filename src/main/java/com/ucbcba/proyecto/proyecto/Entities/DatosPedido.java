@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name="datos_pedido")
 public class DatosPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,6 +51,7 @@ public class DatosPedido {
     public void setNombreFactura(String razonSocial) {
         this.razonSocial = razonSocial;
     }
+
 
     public String getDireccion() {
         return direccion;
