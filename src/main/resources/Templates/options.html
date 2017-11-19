@@ -2,8 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Options</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
+        td, th {
+            border: 1px solid #FFE4B5;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFE4B5;
+        }
     </style>
 </head>
 <body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
@@ -36,6 +52,8 @@
         </table>
     </div>
 </div>
+<div>
 <a href="/admin/empresas"><button type="button" class="btn btn-link">Atras</button></a>
+</div>>
 </body>
 </html>
