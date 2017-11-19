@@ -4,6 +4,7 @@
 <head>
     <title>Pagina Principal</title>
     <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -11,13 +12,15 @@
 <body>
 
 <div class="page-header">
-    <div class="btn-group" th:if="${email} != 'anonymousUser'" align="right">
-        <div th:each="role : ${roles}" th:if="${role.name} == 'ADMIN'">
-            <a class="btn" href="/admin/empresas">Administrar</a>
-            <a class="btn" href="/admin/listar">Ver Usuarios</a>
+    <div class="dropdown">
+        <button class="dropbtn" th:if="${email} != 'anonymousUser'" th:text="${name}"><i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
+            <div th:each="role : ${roles}" th:if="${role.name} == 'ADMIN'">
+                <a class="btn" href="/admin/empresas">Administrar</a>
+                <a class="btn" href="/admin/listar">Ver Usuarios</a>
+            </div>
+            <a class="btn" href="/logout">logout</a>
         </div>
-        <a class="nombre" th:text="${name}"></a>
-        <a class="btn" href="/logout">logout</a>
     </div>
     <div th:if="${email} == 'anonymousUser'" align="right">
         <div class="btn-group">

@@ -2,48 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Options</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #FFE4B5;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #FFE4B5;
-        }
-    </style>
+    <link href="../static/css/listasView.css" th:href="@{/css/listasView.css}" rel="stylesheet" />
 </head>
-<body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
-                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
+<body>
 
-<a href="/admin/option/new"><button type="button" class="btn btn-link">Agregar option</button></a>
+<h1 th:text="${MiEmpresa.nombre}"></h1>
 <div class="container">
-    <div th:if="${not #lists.isEmpty(options)}">
+    <div>
         <table class="table table-striped">
             <caption><h1>Lista de Opciones</h1></caption>
-            <tr>
+            <tr class="cabecera">
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Empresa</th>
                 <th>Precio</th>
                 <th>Imagen</th>
                 <th>Opciones</th>
             </tr>
-            <tr th:each="option : ${options}">
+            <tr class="datos" th:each="option : ${MiEmpresa.Options}">
                 <td th:text="${option.id}">Id</td>
                 <td th:text="${option.name}">Name</td>
-                <td th:each= "empresa : ${option.empresa}"><div th:text="${empresa.nombre}"></div></td>
                 <td th:text="${option.price}">Price</td>
-                <td><img class="info" th:src="${option.image}" alt="Paris" width="50" height="50" /></td>
+                <td><img class="info" th:src="${option.image}" alt="Imagen no seteada" width="50" height="50" /></td>
                 <td><!-- <a th:href="${ '/option/' + option.id">Ver</a> -->
                     <a th:href="${ '/admin/option/eliminar/' + option.id}">Eliminar</a>
                     <a th:href="${ '/admin/option/editar/' + option.id}">Editar</a>
@@ -52,8 +31,7 @@
         </table>
     </div>
 </div>
-<div>
-<a href="/admin/empresas"><button type="button" class="btn btn-link">Atras</button></a>
-</div>>
+<a class="btnl" href="/admin/empresas">Atras</a>
+<a class="btnr" th:href="${'/admin/option/new/' + MiEmpresa.idEmpresa}">Nueva opcion</a>
 </body>
 </html>

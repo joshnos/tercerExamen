@@ -1,5 +1,6 @@
 package com.ucbcba.proyecto.proyecto.Controllers;
 
+import com.ucbcba.proyecto.proyecto.Entities.Empresa;
 import com.ucbcba.proyecto.proyecto.Entities.Option;
 import com.ucbcba.proyecto.proyecto.Services.EmpresaService;
 import com.ucbcba.proyecto.proyecto.Services.OptionService;
@@ -28,34 +29,32 @@ public class OptionController {
     @RequestMapping(value = "/admin/option", method = RequestMethod.POST)
     public String save(@Valid Option option, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-            model.addAttribute("empresas",empresaService.listAllEmpresas());
             return "optionForm";
         }
         optionService.saveOption(option);
-        return "redirect:/admin/options";
+        return "redirect:/admin/options/"+option.getEmpresa().getIdEmpresa();
     }
-    @RequestMapping(value = "/admin/options", method = RequestMethod.GET)
-    public String list(Model model){
-        model.addAttribute("options",optionService.listAllOptions());
-        model.addAttribute("empresa",empresaService.listAllEmpresas());
+    @RequestMapping(value = "/admin/options/{id}", method = RequestMethod.GET)
+    public String list(@PathVariable Integer id, Model model){
+        model.addAttribute("MiEmpresa",empresaService.getEmpresaById(id));
         return "options";
     }
-    @RequestMapping(value = "/admin/option/new",method = RequestMethod.GET)
-    public String newOption(Model model){
-        model.addAttribute("option",new Option());
-        model.addAttribute("empresas",empresaService.listAllEmpresas());
+    @RequestMapping(value = "/admin/option/new/{id}",method = RequestMethod.GET)
+    public String newOption(@PathVariable Integer id,Model model){
+        Option MiOpcion = new Option();
+        MiOpcion.setEmpresa(empresaService.getEmpresaById(id));
+        model.addAttribute("option",MiOpcion);
         return "optionForm";
     }
     @RequestMapping(value = "/admin/option/eliminar/{id}",method = RequestMethod.GET)
     public String deleteOption(@PathVariable Integer id, Model model){
-        model.addAttribute("empresas",empresaService.listAllEmpresas());
+        Empresa MiEmpresa = optionService.getOptionById(id).getEmpresa();
         optionService.deleteOption(id);
-        return "redirect:/admin//options";
+        return "redirect:/admin/options/"+MiEmpresa.getIdEmpresa();
     }
     @RequestMapping(value = "/admin/option/editar/{id}",method = RequestMethod.GET)
     public String editarOption(@PathVariable Integer id, Model model){
         model.addAttribute("option",optionService.getOptionById(id));
-        model.addAttribute("empresas",empresaService.listAllEmpresas());
         return "optionForm";
     }
 }

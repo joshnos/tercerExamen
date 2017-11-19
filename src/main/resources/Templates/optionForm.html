@@ -13,16 +13,7 @@
     <div>
         <form class="form-horizontal" th:object="${option}" th:action="@{/admin/option}" method="post">
             <input type="hidden" th:field="*{id}"/>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Empresa:</label>
-                <div class="col-sm-10">
-                    <select th:field="*{empresa}">
-                        <option th:each="empresa : ${empresas}"
-                                th:value="${empresa.idEmpresa}"
-                                th:text="${empresa.nombre}"></option>
-                    </select>
-                </div>
-            </div>
+            <input type="hidden" th:field="*{empresa}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Nombre:</label>
                 <div class="col-sm-10">

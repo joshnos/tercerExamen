@@ -2,36 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Empresa</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link href="../static/css/listasView.css" th:href="@{/css/listasView.css}" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #FFE4B5;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #FFE4B5;
-        }
-    </style>
 </head>
-<body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
-                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
-<a class="btn" href="/admin/empresa/new"><button type="button" class="btn btn-primary" style="background-color: #F4D03F ">Agregar restaurante</button></a>
+<body>
 
 <div class="container">
-    <div th:if="${not #lists.isEmpty(empresas)}">
+    <div>
         <table class="table table-striped">
             <caption><h1>Lista de Restaurantes</h1></caption>
-            <tr>
+            <tr class="cabecera">
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Direccion</th>
@@ -41,7 +22,7 @@
                 <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
-            <tr th:each="empresa : ${empresas}">
+            <tr class="datos" th:each="empresa : ${empresas}">
                 <td th:text="${empresa.idEmpresa}">Id</td>
                 <td th:text="${empresa.nombre}">description</td>
                 <td th:text="${empresa.direccion}">direccion</td>
@@ -52,14 +33,13 @@
                 <td><a th:href="${ '/admin/empresa/' + empresa.idEmpresa}">Ver</a>
                     <a th:href="${ '/admin/empresa/eliminar/' + empresa.idEmpresa}">Eliminar</a>
                     <a th:href="${ '/admin/empresa/editar/' + empresa.idEmpresa}">Editar</a>
+                    <a th:href="${ '/admin/options/' + empresa.idEmpresa}">menu</a>
                 </td>
             </tr>
         </table>
     </div>
 </div>
-<a class="btn" href="/admin/options"><button type="button" class="btn btn-primary" style="background-color: #F4D03F ">Agregar opciones de menu</button></a>
-<div>
-    <a class="btn" href="/bienvenidos"><button type="button" class="btn btn-primary" style="background-color: #F4D03F ">Atras</button></a>
-</div>
+<a class="btnl" href="/bienvenidos">Atras</a>
+<a class="btnr" href="/admin/empresa/new">Nuevo</a>
 </body>
 </html>
