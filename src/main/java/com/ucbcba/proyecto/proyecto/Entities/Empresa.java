@@ -22,7 +22,7 @@ public class Empresa {
     @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
     private String direccion;
 
-    @Range(min = 1,max = 5,message = "El valor debe estar entre 1 y 5")
+    @Range(min = 0,max = 5,message = "El valor debe estar entre 1 y 5")
     private int calificacion;
 
     @NotNull

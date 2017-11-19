@@ -1,47 +1,83 @@
-body {
+/*body {
     background:url(../imagenes/fondoPizza.jpg);
     background-repeat: no-repeat;
     background-size:100% 100%;
     background-attachment: fixed;
     background-possition: center;
+}*/
+/*My backround*/
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -999;
 }
-.page-header {
-   position:absolute;
-   top:0;
-   bottom:0;
-   right:0;
-   left:0;
-   background:rgba(0, 0, 0, 0.5);
-   height:100px;
+.bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+
+  animation-name: show-for-a-while;
+  animation-duration: 24s; /*50s;*/
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
 }
-.page-header:hover{
-   background:rgba(0, 0, 0, 0.7);
+.bg img:nth-child(1) { animation-delay: -24s; }
+.bg img:nth-child(2) { animation-delay: -16s; }
+.bg img:nth-child(3) { animation-delay: -8s; }
+
+/* Add .debug class to see the images. */
+.bg.debug img:nth-child(1) { margin-top: 1em; }
+.bg.debug img:nth-child(2) { margin-top: 2em; }
+.bg.debug img:nth-child(3) { margin-top: 3em; }
+
+@keyframes show-for-a-while {
+  0%,30% { opacity: 1; }
+  35%,95% { opacity: 0; }
 }
 
-h1 {
-   color:white;
-   font-family:"Comic Sans MS";
-}
-.nombre{
-   color:white;
-   font-size:20px;
-   font-weight:bold;
-   padding: 2px 5px;
-}
-.btn-group .btn {
-    background-color: #c61114; /* Red */
-    border: none;
-    color: white;
-    padding: 2px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    float: right;
+/* Misc. styling below */
+
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
-.btn-group .btn:hover {
-    background-color: #9b0f11;
+article {
+  max-width: 30em;
+  text-align: justify;
+  text-indent: 2em;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.875);
+  padding: 2em;
+  border-radius: 2em;
+  border: 1px solid rgba(0, 0, 0, 0.875);
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+article :first-child {
+  margin-top: 0;
+}
+article :last-child {
+  margin-bottom: 0;
+}
+/*Fin background*/
+
+
+.title {
+   float: left;
+   display: block;
+   color: #f2f2f2;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+   font-size: 17px;
 }
 
 .btn-pedir{
@@ -66,50 +102,71 @@ h1 {
     box-shadow:none;
 }
 
-/* Dropdown Button */
-.dropbtn {
-    background-color: #c61114;
-    color: white;
-    padding: 2px 5px;
-    border: none;
-    cursor: pointer;
-    min-width: 160px;
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
 }
 
-/* The container <div> - needed to position the dropdown content */
+/* Links inside the navbar */
+.navbar a.btn {
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
 .dropdown {
-    position: relative;
-    float:right;
-    display: block;
+  float: right;
+  overflow: hidden;
 }
 
-/* Dropdown Content (Hidden by Default) */
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  min-width: 160px;
+  background-color: inherit;
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a.btn:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+/* Dropdown content (hidden by default) */
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 2px 5px;
-    text-decoration: none;
-    display: block;
+.dropdown-content a.btn {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a.btn:hover {
+  background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #9b0f11;
+  display: block;
 }

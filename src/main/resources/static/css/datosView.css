@@ -1,0 +1,50 @@
+body{
+   background-image: url(../imagenes/fondoPizza.jpg);
+   background-repeat: no-repeat;
+   background-size:100% 100%;
+   background-attachment: fixed;
+   background-possition: center;
+   background-color:#FAFAD2;
+}
+
+.container{
+   position:fixed;
+   width:35%;
+   margin: 3% 32%;
+   background:rgba(0,0,0,0.5);
+}
+
+h1{
+    color:white;
+    font-weight:bold;
+    text-align:center;
+}
+
+.show{
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 6%;
+}
+
+a{
+   padding: 12px 30px;
+}
+
+.btnl{
+    background-color: #c61114; /* Red */
+        border: none;
+        color: white;
+        padding: 2px 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        float: left;
+}
+
+.btnl:hover{
+    opacity: 0.8;
+}

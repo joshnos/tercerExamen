@@ -16,17 +16,15 @@
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Imagen</th>
-                <th>Opciones</th>
+                <th colspan="2">Opciones</th>
             </tr>
             <tr class="datos" th:each="option : ${MiEmpresa.Options}">
                 <td th:text="${option.id}">Id</td>
                 <td th:text="${option.name}">Name</td>
                 <td th:text="${option.price}">Price</td>
-                <td><img class="info" th:src="${option.image}" alt="Imagen no seteada" width="50" height="50" /></td>
-                <td><!-- <a th:href="${ '/option/' + option.id">Ver</a> -->
-                    <a th:href="${ '/admin/option/eliminar/' + option.id}">Eliminar</a>
-                    <a th:href="${ '/admin/option/editar/' + option.id}">Editar</a>
-                </td>
+                <td><img class="info" th:src="${option.image}" alt="Imagen no establecida" width="50" height="50" /></td>
+                <td><a class="btn" th:href="${ '/admin/option/eliminar/' + option.id}">Eliminar</a></td>
+                <td><a class="btn" th:href="${ '/admin/option/editar/' + option.id}">Editar</a></td>
             </tr>
         </table>
     </div>

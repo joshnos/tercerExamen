@@ -37,14 +37,20 @@ td, th {
 
 .btnr{
     background-color: #c61114; /* Red */
-        border: none;
-        color: white;
-        padding: 2px 5px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        cursor: pointer;
-        float: right;
+    border: none;
+    color: white;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    float: right;
+}
+
+.btn{
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .btnl{

@@ -3,16 +3,18 @@
 <head>
 
     <title>Empresa</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link href="../static/css/datosView.css" th:href="@{/css/datosView.css}" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
-                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
-    <b>Nombre:</b><p th:text="${empresa.nombre}"></p>
-    <b>Direccion:</b><p th:text="${empresa.direccion}"></p>
-    <b>Telefono:</b><p th:text="${empresa.telefono}"></p>
-    <b>Descripcion:</b><p th:text="${empresa.descripcion}"></p>
-    <b>Calificacion:</b><p th:text="${empresa.calificacion}"></p>
+<body>
+<div class="container">
+    <h1 th:text="${empresa.nombre}"></h1>
+    <div class="show">Direccion:<a th:text="${empresa.direccion}"></a></div>
+    <div class="show">Telefono:<a th:text="${empresa.telefono}"></a></div>
+    <div class="show">Descripcion:<a th:text="${empresa.descripcion}"></a></div>
+    <div class="show">Calificacion:<a th:text="${empresa.calificacion}"></a></div>
+</div>
+<a class="btnl" href="/admin/empresas">Atras</a>
 </body>
 </html>
