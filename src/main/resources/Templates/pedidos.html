@@ -15,27 +15,29 @@
 
 <div class="container">
     <div>
-        <form class="form-horizontal" th:object="${pedido}" th:action="@{/pedido}" method="post">
+        <form class="form-horizontal" th:object="${pedido}" th:action="${'/registrarpedido/' + Empresa_Seleccionada.idEmpresa}" method="post">
 
             <input type="hidden" th:field="*{id}"/>
-            <div align="center"><font th:text="${empresa.nombre}" size="6" color="white"></font></div>
-            <div align="center"><font th:text="${empresa.descripcion}" size="5" color="white"></font></div>
-            <div align="left" ><font th:text="${'Calificacion: ' + empresa.calificacion}" size="3" color="white"></font></div>
-            <div align="left" ><font th:text="${'Telefono: ' + empresa.telefono}" size="3" color="white"></font></div>
-            <div align="left" ><font th:text="${'Direccion: ' + empresa.direccion}" size="3" color="white"></font></div>
+            <div align="center"><font th:text="${Empresa_Seleccionada.nombre}" size="6" color="white"></font></div>
+            <div align="center"><font th:text="${Empresa_Seleccionada.descripcion}" size="5" color="white"></font></div>
+            <div align="left" ><font th:text="${'Calificacion: ' + Empresa_Seleccionada.calificacion}" size="3" color="white"></font></div>
+            <div align="left" ><font th:text="${'Telefono: ' + Empresa_Seleccionada.telefono}" size="3" color="white"></font></div>
+            <div align="left" ><font th:text="${'Direccion: ' + Empresa_Seleccionada.direccion}" size="3" color="white"></font></div>
             <div align="left" >
-                <div th:each= "option:   ${empresa.Options}">
-                    <font th:text="${option.name}" size="3" color="white"></font>
-                    <img class="info" th:src="${option.image}" alt="Paris" width="100" height="100" />
-                    <!--<div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" th:field="*{cantidad}"/>
-                            <span style="color: red;" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}">Error</span>
-                        </div>
-                    </div>-->
-                </div>
+                    <div th:each= "option:   ${Empresa_Seleccionada.Options}">
+                        <font th:text="${option.name}" size="3" color="white"></font>
+                        <img class="info" th:src="${option.image}" alt="Paris" width="100" height="100" />
+                        <!--<div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{cantidad}"/>
+                                <span style="color: red;" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}">Error</span>
+                            </div>
+                        </div>-->
+                    </div>
             </div>
-
+            Direccion:<input type="text" th:field="*{direccion}"/>
+            Precio:<input type="text" th:field="*{precio}"/>
+            Cantidad:<input type="text" th:object="${opcionPedido}" th:field="*{cantidad}"/>
             <!-- <div class="container">
                <form th:action="@{/registrarpedido}" method="POST" class="form-signin">
                    <div class="count-input space-bottom">
@@ -45,7 +47,6 @@
                    </div>
                </form>
            </div> -->
-
             <div class="row">
                 <button type="submit" href="/datosPedido" class="btn btn-default">PEDIR</button>
             </div>
