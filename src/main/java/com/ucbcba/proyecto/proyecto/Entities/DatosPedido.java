@@ -18,7 +18,7 @@ public class DatosPedido {
     @NotNull
     @Size(min = 1, max = 200, message = "Debe tener entre 1 y 45 caracteres")
     private String razonSocial;
-    private String direccion;
+
     @ManyToOne
     private Pedido pedido;
 
@@ -55,14 +55,6 @@ public class DatosPedido {
         this.razonSocial = razonSocial;
     }
 
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
 
     public Pedido getPedido() {
         return pedido;

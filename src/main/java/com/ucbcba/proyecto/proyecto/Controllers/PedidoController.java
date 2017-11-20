@@ -1,13 +1,13 @@
 package com.ucbcba.proyecto.proyecto.Controllers;
 
 import com.ucbcba.proyecto.proyecto.Entities.Opcion_Pedido;
+import com.ucbcba.proyecto.proyecto.Entities.Option;
 import  com.ucbcba.proyecto.proyecto.Entities.Pedido;
 import com.ucbcba.proyecto.proyecto.Entities.User;
-import com.ucbcba.proyecto.proyecto.Services.EmpresaService;
-import com.ucbcba.proyecto.proyecto.Services.Opcion_PedidoService;
-import com.ucbcba.proyecto.proyecto.Services.OptionService;
-import com.ucbcba.proyecto.proyecto.Services.PedidoService;
+import com.ucbcba.proyecto.proyecto.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +25,11 @@ public class PedidoController {
     private EmpresaService empresaService;
     private PedidoService pedidoService;
     private Opcion_PedidoService opcion_pedidoService;
+    private UserService userService;
+    @Autowired
+    public void setUserService(UserService userService){
+        this.userService=userService;
+    }
     @Autowired
     public void setPedidoService(PedidoService pedidoService){this.pedidoService=pedidoService;}
     @Autowired
@@ -35,29 +40,26 @@ public class PedidoController {
     public void setOpcion_pedidoService(Opcion_PedidoService opcion_pedidoService){this.opcion_pedidoService = opcion_pedidoService;}
 
 
-    @RequestMapping(value = "/pedido/{id}", method = RequestMethod.POST)
-    public String save(@Valid Pedido pedido,@Valid Opcion_Pedido opcionPedido, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
-            model.addAttribute("empresas",empresaService.listAllEmpresas());
-            model.addAttribute("options",optionService.listAllOptions());
-            return "optionForm";
-        }
-        pedidoService.savePedido(pedido);
-        opcion_pedidoService.saveOpcion_Pedido(opcionPedido);
-        return "redirect:/datosPedido";
-    }
     @RequestMapping(value="/pedido/{id}", method = RequestMethod.GET)
     public String Pedir(@PathVariable Integer id, Model model){
-        model.addAttribute("empresa",empresaService.getEmpresaById(id));
-        model.addAttribute("options",optionService.listAllOptions());
+        model.addAttribute("Empresa_Seleccionada",empresaService.getEmpresaById(id));
+        model.addAttribute("TempOp",new Option());
         model.addAttribute("pedido",new Pedido());
         model.addAttribute("opcionPedido",new Opcion_Pedido());
         return "pedidos";
     }
 
-    @RequestMapping(value="/registrarpedido", method = RequestMethod.POST)
-    public String Pedido(@ModelAttribute("pedido") Pedido pedido, Model model){
+    @RequestMapping(value="/registrarpedido/{id}", method = RequestMethod.POST)
+    public String Pedido(@PathVariable Integer id,@ModelAttribute("pedido") Pedido pedido,@ModelAttribute("opcionPedido") Opcion_Pedido opcionpedido, Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String Email = auth.getName(); //get logged in username
+        User usuario=userService.findByEmail(Email);
+        pedido.setUser(usuario);
+        pedido.setEmpresa(empresaService.getEmpresaById(id));
         pedidoService.savePedido(pedido);
+        opcionpedido.setPedido(pedido);
+        opcionpedido.setOption(optionService.getOptionById(1));
+        opcion_pedidoService.saveOpcion_Pedido(opcionpedido);
         return "redirect:/pago";
     }
 

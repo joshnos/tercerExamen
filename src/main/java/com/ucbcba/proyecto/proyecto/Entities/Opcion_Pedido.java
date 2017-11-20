@@ -52,11 +52,8 @@ public class Opcion_Pedido {
         return pedido;
     }
 
-    public Integer getIdOpcionPedido() {
+    public int getIdOpcionPedido() {
         return IdOpcionPedido;
     }
 
-    public void setIdOpcionPedido(Integer idOpcionPedido) {
-        IdOpcionPedido = idOpcionPedido;
-    }
 }
