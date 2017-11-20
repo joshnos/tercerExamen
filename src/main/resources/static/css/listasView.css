@@ -1,0 +1,74 @@
+body{
+    background-image: url(../imagenes/fondoPizza.jpg);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    background-attachment: fixed;
+    background-possition: center;
+    background-color:#FAFAD2;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #000;
+    text-align: left;
+    padding: 8px;
+}
+
+.cabecera{
+    background:gray;
+}
+
+.datos td {
+    background-color: #d6d6d6;
+}
+
+.datos:hover{
+    background:#cccccc;
+}
+
+.datos td:hover{
+    background:#000;
+    color:white;
+}
+
+.btnr{
+    background-color: #c61114; /* Red */
+    border: none;
+    color: white;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    float: right;
+}
+
+.btn{
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btnl{
+    background-color: #c61114; /* Red */
+        border: none;
+        color: white;
+        padding: 2px 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        float: left;
+}
+
+.btnr:hover, .btnl:hover{
+    opacity: 0.8;
+}
+
+h1{
+    color:white;
+}

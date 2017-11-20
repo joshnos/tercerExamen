@@ -22,11 +22,14 @@ public class Empresa {
     @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
     private String direccion;
 
-    @Range(min = 1,max = 5,message = "El valor debe estar entre 1 y 5")
+    @Range(min = 0,max = 5,message = "El valor debe estar entre 1 y 5")
     private int calificacion;
 
     @NotNull
     private int telefono;
+
+    private String image;
+
 
     @NotNull
     @Size(min = 1, max = 45, message = "Debe tener entre 1 y 45 caracteres")
@@ -89,5 +92,13 @@ public class Empresa {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -2,8 +2,10 @@ package com.ucbcba.proyecto.proyecto.Controllers;
 
 
 
+import com.ucbcba.proyecto.proyecto.Entities.Role;
 import com.ucbcba.proyecto.proyecto.Entities.User;
 import com.ucbcba.proyecto.proyecto.Services.CiudadService;
+import com.ucbcba.proyecto.proyecto.Services.RolesService;
 import com.ucbcba.proyecto.proyecto.Services.SecurityService;
 import com.ucbcba.proyecto.proyecto.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.jws.soap.SOAPBinding;
+import java.util.HashSet;
+import java.util.Set;
+
 @Controller
 public class UserController {
     @Autowired
@@ -22,12 +28,15 @@ public class UserController {
     @Autowired
     private SecurityService securityService;
 
+    private RolesService rolesService;
     private CiudadService ciudadService;
 
     @Autowired
     private void setCiudadService(CiudadService ciudadService){
         this.ciudadService=ciudadService;
     }
+    @Autowired
+    private void setRolesService(RolesService rolesService){this.rolesService=rolesService;}
     //@Autowired
     //private UserValidator userValidator;
 
@@ -49,9 +58,9 @@ public class UserController {
         securityService.autologin(user.getEmail(), user.getPasswordConfirm());
         return "redirect:/bienvenidos";
     }
-    @RequestMapping(value = "/listar",method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/listar",method = RequestMethod.GET)
     public String root(Model model) {
-        model.addAttribute("user", userService.listAllUser());
+        model.addAttribute("users", userService.listAllUser());
         return "listar";
     }
 
@@ -64,6 +73,8 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
             return "redirect:/bienvenidos";
         }
+
         return "login";
     }
+
 }

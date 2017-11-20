@@ -23,13 +23,12 @@ public class Option {
     @Range(min=1,max=200, message = "Debe tener un valor entre 1 y 200")
     private int price;
 
+    private String image;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
-
-    @ManyToMany(mappedBy = "options")
-    private Set<Pedido> pedidos;
 
     public Empresa getEmpresa() {
         return empresa;
@@ -63,11 +62,11 @@ public class Option {
         this.price = price;
     }
 
-    public void setPedidos(Set<Pedido> pedidos) {
-        this.pedidos = pedidos;
+    public String getImage() {
+        return image;
     }
 
-    public Set<Pedido> getPedidos() {
-        return pedidos;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

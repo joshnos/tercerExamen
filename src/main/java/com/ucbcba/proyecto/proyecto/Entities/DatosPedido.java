@@ -13,12 +13,13 @@ public class DatosPedido {
     int Nit;
     @NotNull
     long telf;
+
     @NotNull
     @Size(min = 1, max = 200, message = "Debe tener entre 1 y 45 caracteres")
-    String razonSocial;
-    String direccion;
+    private String razonSocial;
+    private String direccion;
     @ManyToOne
-    Pedido pedido;
+    private Pedido pedido;
 
     public int getId() {
         return id;

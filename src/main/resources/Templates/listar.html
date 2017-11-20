@@ -8,11 +8,11 @@
 </head>
 <body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
 background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
-<div th:each="user:${user}">
+<div th:each="user:${users}">
     <div><font color="white" size="4" th:text="${'          Id: ' +user.id}"></font></div>
     <div><font color="white" size="4" th:text="${'          Email: ' + user.email}"></font></div>
     <div><font color="white" size="4" th:text="${'          Nombre: ' + user.name}"></font></div>
-    <div><font color="white" size="4" th:text="${'          Role(1 Usuario privilegiado -2 Usuario Normal): ' + user.id}"></font></div>
+    <div th:each="role:${user.roles}"><font color="white" size="4" th:text="${'          Role ' + role.id + ': ' + role.name}"></font></div>
 </div>
 
 </body>

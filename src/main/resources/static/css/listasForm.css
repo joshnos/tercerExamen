@@ -1,0 +1,73 @@
+body{
+   background-image: url(../imagenes/fondoPizza.jpg);
+   background-repeat: no-repeat;
+   background-size:100% 100%;
+   background-attachment: fixed;
+   background-possition: center;
+   background-color:#FAFAD2;
+}
+
+.container{
+   position:fixed;
+   width:35%;
+   margin: 3% 32%;
+   background:rgba(0,0,0,0.5);
+}
+
+h1{
+    color:white;
+    font-weight:bold;
+    text-align:center;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+textarea{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    resize:vertical;
+    min-height:110px;
+    max-height:110px;
+}
+/* Set a style for all buttons */
+button {
+    background-color: #c61114;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 10%;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}
+
+label, span{
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    text-align:center;
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 6%;
+}

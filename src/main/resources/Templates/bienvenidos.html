@@ -3,40 +3,37 @@
       xmlns:th="http://www.thymeleaf.org" >
 <head>
     <title>Pagina Principal</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<body th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
-                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
-
-<div class="page-header" style="background-color: #E74C3C;">
-    <div th:if="${email} != 'anonymousUser'" align="right">
-        <div class="btn-group btn-group-lg " th:each="role : ${roles}" th:if="${role.name} == 'ADMIN'">
-            <a class="btn" href="/empresas"><button type="button" class="btn btn-primary" style="background-color: #F4D03F">Administrar</button></a>
-            <a class="btn" href="/listar"><button type="button" class="btn btn-primary" style="background-color: #F4D03F">Ver USUARIOS</button></a>
-        </div>
-
-        <a th:text="${name}"></a>
-    </div>
+<body>
+<div class="bg">
+    <img th:src="@{/imagenes/fondoPizza.jpg}"/>
+    <img th:src="@{/imagenes/pizza2.jpg}"/>
+    <img th:src="@{/imagenes/pizza3.jpg}"/>
+</div>
+<div class="navbar">
+    <a class="title">Pizza Hunter</a>
     <div th:if="${email} == 'anonymousUser'" align="right">
-        <div class="btn-group-lg"  >
-            <a  class="btn" href="/login"><button type="button" class="btn btn-primary" style="background-color: #F4D03F">Iniciar Sesion</button></a>
-            <a  class="btn" href="/registration"><button type="button" class="btn btn-primary" style="background-color: #F4D03F">Registrar</button></a>
+        <div class="btn-group">
+            <a  class="btn" href="/registration">Registrar</a>
+            <a  class="btn" href="/login">Iniciar Sesion</a>
         </div>
     </div>
-    <h1>Bienvenidos</h1>
-
+    <div class="dropdown">
+        <button class="dropbtn" th:if="${email} != 'anonymousUser'" th:text="${name}"></button>
+        <div class="dropdown-content">
+            <div th:each="role : ${roles}" th:if="${role.name} == 'ADMIN'">
+                <a class="btn" href="/admin/empresas">Administrar</a>
+                <a class="btn" href="/admin/listar">Ver Usuarios</a>
+            </div>
+            <a class="btn" href="/logout">logout</a>
+        </div>
+    </div>
 </div>
+<a  class="btn-pedir" title="Pedir" href="/Lista_de_pedidos"></a>
 
-<br> </br>
-<br> </br>
-<br> </br>
-<div align="center">
-    <a title="Pedir " href="/Lista_de_pedidos">
-        <img th:src="@{/imagenes/Pizza.jpg}" alt="Pedir" class="img-rounded"/>
-    </a>
-</div>
 </body>
 </html>
