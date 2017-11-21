@@ -49,6 +49,27 @@ public class PedidoController {
         return "pedidos";
     }
 
+    @RequestMapping(value = "/pedidoPdefecto", method=RequestMethod.GET)
+    public String Defecto(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String Email = auth.getName(); //get logged in username
+        User usuario=userService.findByEmail(Email);
+        Pedido pedidoactual = new Pedido();
+        for (Pedido pedido: pedidoService.listAllPedidos()){
+            if(pedido.getUser()==usuario)
+                pedidoactual=pedido;
+        }
+        model.addAttribute("empresa",pedidoactual.getEmpresa());
+        model.addAttribute("pedido",pedidoactual);
+        Opcion_Pedido opcion_pedido = new Opcion_Pedido();
+        for(Opcion_Pedido opcion_pedido1: pedidoactual.getOpcion_pedidos()){
+            opcion_pedido=opcion_pedido1;
+        }
+        model.addAttribute("top",opcion_pedido);
+
+        return "pedidos";
+    }
+
     @RequestMapping(value="/registrarpedido/{id}", method = RequestMethod.POST)
     public String Pedido(@PathVariable Integer id, @ModelAttribute("pedido") Pedido pedido,@ModelAttribute("top") Opcion_Pedido opcion_pedido, Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
