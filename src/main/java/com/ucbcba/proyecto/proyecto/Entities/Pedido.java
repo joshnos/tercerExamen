@@ -11,8 +11,6 @@ import java.util.Set;
 
 @Entity
 public class  Pedido {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  int id;
@@ -21,12 +19,14 @@ public class  Pedido {
     @NotNull
     private String direccion;
     @NotNull
-
     @ManyToOne
     private User user;
     @NotNull
     @ManyToOne
     private Empresa empresa;
+    @NotNull
+    @OneToMany(mappedBy = "pedido")
+    private Set<Opcion_Pedido> opcion_pedidos = new HashSet<>();
 
     public int getId() {
         return id;
@@ -68,4 +68,11 @@ public class  Pedido {
         this.empresa = empresa;
     }
 
+    public void setOpcion_pedidos(Set<Opcion_Pedido> opcion_pedidos) {
+        this.opcion_pedidos = opcion_pedidos;
+    }
+
+    public Set<Opcion_Pedido> getOpcion_pedidos() {
+        return opcion_pedidos;
+    }
 }

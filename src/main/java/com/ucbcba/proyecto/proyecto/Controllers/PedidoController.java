@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.*;
 
 @Controller
 public class PedidoController {
@@ -42,27 +43,25 @@ public class PedidoController {
 
     @RequestMapping(value="/pedido/{id}", method = RequestMethod.GET)
     public String Pedir(@PathVariable Integer id, Model model){
-        model.addAttribute("Empresa_Seleccionada",empresaService.getEmpresaById(id));
-        model.addAttribute("TempOp",new Option());
+        model.addAttribute("empresa",empresaService.getEmpresaById(id));
         model.addAttribute("pedido",new Pedido());
-        model.addAttribute("opcionPedido",new Opcion_Pedido());
+        model.addAttribute("top",new Opcion_Pedido());
         return "pedidos";
     }
 
     @RequestMapping(value="/registrarpedido/{id}", method = RequestMethod.POST)
-    public String Pedido(@PathVariable Integer id,@ModelAttribute("pedido") Pedido pedido,@ModelAttribute("opcionPedido") Opcion_Pedido opcionpedido, Model model){
-        model.addAttribute("pedidos",pedidoService.getPedidoById(id));
+    public String Pedido(@PathVariable Integer id, @ModelAttribute("pedido") Pedido pedido,@ModelAttribute("top") Opcion_Pedido opcion_pedido, Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String Email = auth.getName(); //get logged in username
         User usuario=userService.findByEmail(Email);
         pedido.setUser(usuario);
         pedido.setEmpresa(empresaService.getEmpresaById(id));
+        int Total = opcion_pedido.getOption().getPrice() * opcion_pedido.getCantidad();
+        pedido.setPrecio(Total);
         pedidoService.savePedido(pedido);
-        opcionpedido.setPedido(pedido);
-        opcionpedido.setOption(optionService.getOptionById(1));
-        opcion_pedidoService.saveOpcion_Pedido(opcionpedido);
-
-        return "redirect:/bienvenidos";
+        opcion_pedido.setPedido(pedido);
+        opcion_pedidoService.saveOpcion_Pedido(opcion_pedido);
+        return "redirect:/pago";
     }
 
     @RequestMapping(value="/Lista_de_pedidos")

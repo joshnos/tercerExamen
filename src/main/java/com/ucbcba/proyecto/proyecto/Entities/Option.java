@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,6 +30,9 @@ public class Option {
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+
+    @OneToMany(mappedBy = "option")
+    private Set<Opcion_Pedido> opcion_pedidos = new HashSet<>();
 
     public Empresa getEmpresa() {
         return empresa;
@@ -68,5 +72,13 @@ public class Option {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public void setOpcion_pedidos(Set<Opcion_Pedido> opcion_pedidos) {
+        this.opcion_pedidos = opcion_pedidos;
+    }
+
+    public Set<Opcion_Pedido> getOpcion_pedidos() {
+        return opcion_pedidos;
     }
 }

@@ -11,29 +11,29 @@ public class Opcion_Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int IdOpcionPedido;
+    private int Id;
 
-
-    @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "Id_Pedido")
     private Pedido pedido;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "Id_Opcion")
     private Option option;
-    @NotNull
-    private int Cantidad;
+
+    private Integer cantidad;
 
 
-    public int getCantidad() {
-        return Cantidad;
+    public Integer getCantidad() {
+        return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
-        Cantidad = cantidad;
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public void setIdOpcionPedido(int idOpcionPedido) {
-        IdOpcionPedido = idOpcionPedido;
+    public void setIdOpcionPedido(int id) {
+        Id = id;
     }
 
     public void setOption(Option option) {
@@ -53,7 +53,7 @@ public class Opcion_Pedido {
     }
 
     public int getIdOpcionPedido() {
-        return IdOpcionPedido;
+        return Id;
     }
 
 }
