@@ -17,7 +17,7 @@ public class Opcion_Pedido {
     @NotNull
     @ManyToOne
     private Pedido pedido;
-    @NotNull
+
     @ManyToOne
     private Option option;
     @NotNull

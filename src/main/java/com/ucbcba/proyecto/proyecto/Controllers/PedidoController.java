@@ -51,6 +51,7 @@ public class PedidoController {
 
     @RequestMapping(value="/registrarpedido/{id}", method = RequestMethod.POST)
     public String Pedido(@PathVariable Integer id,@ModelAttribute("pedido") Pedido pedido,@ModelAttribute("opcionPedido") Opcion_Pedido opcionpedido, Model model){
+        model.addAttribute("pedidos",pedidoService.getPedidoById(id));
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String Email = auth.getName(); //get logged in username
         User usuario=userService.findByEmail(Email);
@@ -60,7 +61,8 @@ public class PedidoController {
         opcionpedido.setPedido(pedido);
         opcionpedido.setOption(optionService.getOptionById(1));
         opcion_pedidoService.saveOpcion_Pedido(opcionpedido);
-        return "redirect:/pago";
+
+        return "redirect:/bienvenidos";
     }
 
     @RequestMapping(value="/Lista_de_pedidos")
