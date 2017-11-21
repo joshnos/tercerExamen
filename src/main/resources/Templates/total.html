@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+<head lang="en">
+    <title></title>
+    <link href="../static/css/pedidoView.css" th:href="@{/css/pedidoView.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="box">
+    <h1 th:text="${'Precio Total:' + pedido.precio + 'Bs'}"></h1>
+</div>
+</body>
+</html>

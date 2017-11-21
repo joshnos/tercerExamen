@@ -1,0 +1,86 @@
+body{
+    background-image: url(../imagenes/fondoPizza.jpg);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    background-attachment: fixed;
+    background-possition: center;
+    background-color:#FAFAD2;
+    color:white
+}
+
+img{
+   width:220px;
+   margin:auto;
+   display:block;
+   border-radius:50%;
+}
+
+.box {
+    position:fixed;
+      width:35%;
+      margin: 1% 32%;
+      background:rgba(0,0,0,0.5);
+}
+
+h1, h2{
+    text-align:center;
+}
+
+input[type=text] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.data{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #c61114;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 10%;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+label, span{
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    text-align:center;
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 6%;
+}
+
+a{
+    background-color: #c61114; /* Red */
+    border: none;
+    color: white;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    float: right;
+}
+
+a:hover{
+    opacity: 0.8;
+}

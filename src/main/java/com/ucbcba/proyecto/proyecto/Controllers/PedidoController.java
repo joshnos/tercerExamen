@@ -82,7 +82,13 @@ public class PedidoController {
         pedidoService.savePedido(pedido);
         opcion_pedido.setPedido(pedido);
         opcion_pedidoService.saveOpcion_Pedido(opcion_pedido);
-        return "redirect:/pago";
+        return "redirect:/total/"+pedido.getId();
+    }
+
+    @RequestMapping(value="/total/{id}")
+    public String total(@PathVariable Integer id,Model model){
+        model.addAttribute("pedido",pedidoService.getPedidoById(id));
+        return "total";
     }
 
     @RequestMapping(value="/Lista_de_pedidos")

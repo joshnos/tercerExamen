@@ -33,7 +33,8 @@
         </div>
     </div>
 </div>
-<a  class="btn-pedir" title="Pedir" href="/Lista_de_pedidos"></a>
+<a  th:if="${TamPedido} == 0" class="btn-pedir" title="Pedir" href="/Lista_de_pedidos"></a>
+<a  th:if="${TamPedido} == 1" class="btn-pedir" title="Pedir" href="/pedidoPdefecto"></a>
 
 </body>
 </html>

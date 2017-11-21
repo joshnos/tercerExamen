@@ -1,8 +1,10 @@
 package com.ucbcba.proyecto.proyecto.Controllers;
 
 
+import com.ucbcba.proyecto.proyecto.Entities.Pedido;
 import com.ucbcba.proyecto.proyecto.Entities.Role;
 import com.ucbcba.proyecto.proyecto.Entities.User;
+import com.ucbcba.proyecto.proyecto.Services.PedidoService;
 import com.ucbcba.proyecto.proyecto.Services.RolesService;
 import com.ucbcba.proyecto.proyecto.Services.SecurityService;
 import com.ucbcba.proyecto.proyecto.Services.UserService;
@@ -18,10 +20,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
 
     private UserService userService;
+    private PedidoService pedidoService;
 
     @Autowired
     public void setUserService(UserService userService){
         this.userService=userService;
+    }
+    @Autowired
+    public void setPedidoService(PedidoService pedidoService){
+        this.pedidoService=pedidoService;
     }
 
     @RequestMapping({"/","/bienvenidos"})
@@ -38,6 +45,12 @@ public class MainController {
             }
         }
         model.addAttribute("email",name);
+        int Existe=0;
+        for(Pedido pedido:pedidoService.listAllPedidos()){
+            if(pedido.getUser()==userService.findByEmail(name))
+                Existe=1;
+        }
+        model.addAttribute("TamPedido",Existe);
         return "bienvenidos";
     }
 
