@@ -12,42 +12,46 @@
 </head>
 <body>
 
-<div class="box">
-        <form class="form-horizontal" th:object="${pedido}" th:action="${'/registrarpedido/' + empresa.idEmpresa}" method="post">
-
-            <input type="hidden" th:field="*{id}"/>
-            <input type="hidden" th:field="*{precio}"/>
-            <h1 th:text="${empresa.nombre}" size="6" color="white"></h1>
-            <img th:src="${empresa.image}" />
-            <h2 th:text="${empresa.descripcion}" size="5" color="white"></h2>
-            <div class="Data"><label th:text="${'Calificacion: ' + empresa.calificacion}" size="3" color="white"></label></div>
-            <div class="Data"><label th:text="${'Telefono: ' + empresa.telefono}" size="3" color="white"></label></div>
-            <div class="Data"><label th:text="${'Direccion del restaurante: ' + empresa.direccion}" size="3" color="white"></label></div>
-            <h2>Pedido</h2>
-            <div class="Data">
-                <label>Direccion: </label>
-                <input type="text" th:field="*{direccion}"/>
-            </div>
-            <div>
-                <label>Opcion del menu:</label>
-                <select th:object="${top}" th:field="*{option}">
-                    <option th:each="option : ${empresa.options}" th:value="${option.id}" th:text="${option.name}"></option>
-                </select>
-            </div>
-            <div>
-                <label>Cantidad: </label>
-                <input type="text" th:object="${top}" th:field="*{cantidad}"/>
-            </div>
-            <div class="row">
-                <button type="submit" class="btn btn-default">PEDIR</button>
-            </div>
-        </form>
-    <div th:if="${pedido.id}!=0">
-        <a href="/Lista_de_pedidos" class="btn btn-default">Nuevo pedido</a>
-        <a href="/bienvenidos" class="btn btn-default">Atras</a>
+<div class="carrito">
+    <h2>Mi carrito</h2>
+    <div class="MiPedido">
+        <div th:each="op: ${pedido.opcion_pedidos}">
+            <div class="Data"><label th:text="${op.option.name+' (x'+op.cantidad+')'}"></label></div>
+            <div class="Data"><label th:text="${op.option.price }"></label></div>
+        </div>
     </div>
-    <div th:if="${pedido.id}==0">
-        <a href="/Lista_de_pedidos" class="btn btn-default">Atras</a>
+    <div class="Total"><label th:text="${'Total: '+pedido.precio}"></label></div>
+</div>
+
+<div class="box">
+    <img class="title" th:src="${empresa.image}" />
+    <div class="TitleData">
+        <p th:text="${empresa.nombre}">Titulo</p>
+        <p th:text="${empresa.descripcion}"></p>
+    </div>
+    <div class="MainData">
+        <p th:text="${'Calificacion: ' + empresa.calificacion}"></p>
+        <p th:text="${'Telefono: ' + empresa.telefono}"></p>
+        <p th:text="${'Direccion del restaurante: ' + empresa.direccion}"></p>
+    </div>
+</div>
+<div class="CajaPedido">
+    <h2>Menu</h2>
+    <div th:each="op : ${empresa.options}">
+        <div class="Separador"></div>
+        <div class="Cajitas">
+            <form th:object="${top}" th:action="@{/cargar}" method="post">
+                <p class="Op" th:text="${op.name}">Hola</p>
+                <img class="ImgOption" th:src="${op.image}" src="http://librosweb.es/img/css/f0509.gif"/>
+                <p class="Op" th:text="${op.price + 'Bs'}">Bola</p>
+                <input type="hidden" name="OptionId"  th:value="${op.id}"/>
+                <input type="hidden" name="empresa"  th:value="${empresa.idEmpresa}"/>
+                <input type="hidden" name="pedidoId"  th:value="${pedido.id}"/>
+                <div>
+                    <button type="submit">Agregar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>

@@ -16,7 +16,7 @@ public class  Pedido {
     private  int id;
     @NotNull
     private int precio;
-    @NotNull
+
     private String direccion;
     @NotNull
     @ManyToOne
@@ -27,6 +27,16 @@ public class  Pedido {
     @NotNull
     @OneToMany(mappedBy = "pedido")
     private Set<Opcion_Pedido> opcion_pedidos = new HashSet<>();
+
+    private boolean Estado;
+
+    public void setEstado(boolean estado) {
+        Estado = estado;
+    }
+
+    public boolean getEstado(){
+        return Estado;
+    }
 
     public int getId() {
         return id;

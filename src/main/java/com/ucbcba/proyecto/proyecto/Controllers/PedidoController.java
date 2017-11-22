@@ -1,9 +1,6 @@
 package com.ucbcba.proyecto.proyecto.Controllers;
 
-import com.ucbcba.proyecto.proyecto.Entities.Opcion_Pedido;
-import com.ucbcba.proyecto.proyecto.Entities.Option;
-import  com.ucbcba.proyecto.proyecto.Entities.Pedido;
-import com.ucbcba.proyecto.proyecto.Entities.User;
+import com.ucbcba.proyecto.proyecto.Entities.*;
 import com.ucbcba.proyecto.proyecto.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -45,12 +42,54 @@ public class PedidoController {
     public String Pedir(@PathVariable Integer id, Model model){
         model.addAttribute("empresa",empresaService.getEmpresaById(id));
         model.addAttribute("pedido",new Pedido());
-        model.addAttribute("top",new Opcion_Pedido());
         return "pedidos";
     }
 
-    @RequestMapping(value = "/pedidoPdefecto", method=RequestMethod.GET)
-    public String Defecto(Model model){
+    @RequestMapping(value="/cargar", method = RequestMethod.POST)
+    public String Cargar(@ModelAttribute("empresa")Integer Id_Empresa, @ModelAttribute("pedidoId") Integer Id_Pedido, @ModelAttribute("OptionId") Integer Id_Option, Model model){
+        Opcion_Pedido opcion_pedido = new Opcion_Pedido();
+        opcion_pedido.setOption(optionService.getOptionById(Id_Option));
+        if(Id_Pedido==0){
+            Pedido pedido = new Pedido();
+            opcion_pedido.setCantidad(1);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String Email = auth.getName(); //get logged in username
+            User usuario=userService.findByEmail(Email);
+            pedido.setUser(usuario);
+            pedido.setEmpresa(empresaService.getEmpresaById(Id_Empresa));
+            pedido.setPrecio(optionService.getOptionById(Id_Option).getPrice());
+            pedidoService.savePedido(pedido);
+            opcion_pedido.setPedido(pedido);
+            opcion_pedidoService.saveOpcion_Pedido(opcion_pedido);
+        }
+        else
+        {
+            int Total=0;
+            boolean Existe = false;
+            Pedido pedido = pedidoService.getPedidoById(Id_Pedido);
+            for(Opcion_Pedido opcion_pedido1: pedido.getOpcion_pedidos()){
+                if(opcion_pedido1.getOption()==optionService.getOptionById(Id_Option)){
+                    Existe=true;
+                    opcion_pedido1.setCantidad(opcion_pedido1.getCantidad()+1);
+                    opcion_pedido=opcion_pedido1;
+                }
+                Total += opcion_pedido1.getOption().getPrice() * opcion_pedido1.getCantidad();
+
+            }
+            if(Existe!=true){
+                opcion_pedido.setPedido(pedido);
+                opcion_pedido.setCantidad(1);
+                Total+=optionService.getOptionById(Id_Option).getPrice();
+            }
+            opcion_pedidoService.saveOpcion_Pedido(opcion_pedido);
+            pedido.setPrecio(Total);
+            pedidoService.savePedido(pedido);
+        }
+        return "redirect:/pedido/continuar";
+    }
+
+    @RequestMapping(value = "/pedido/continuar", method=RequestMethod.GET)
+    public String Contitnuar(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String Email = auth.getName(); //get logged in username
         User usuario=userService.findByEmail(Email);
@@ -61,29 +100,10 @@ public class PedidoController {
         }
         model.addAttribute("empresa",pedidoactual.getEmpresa());
         model.addAttribute("pedido",pedidoactual);
-        Opcion_Pedido opcion_pedido = new Opcion_Pedido();
-        for(Opcion_Pedido opcion_pedido1: pedidoactual.getOpcion_pedidos()){
-            opcion_pedido=opcion_pedido1;
-        }
-        model.addAttribute("top",opcion_pedido);
-
         return "pedidos";
     }
 
-    @RequestMapping(value="/registrarpedido/{id}", method = RequestMethod.POST)
-    public String Pedido(@PathVariable Integer id, @ModelAttribute("pedido") Pedido pedido,@ModelAttribute("top") Opcion_Pedido opcion_pedido, Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String Email = auth.getName(); //get logged in username
-        User usuario=userService.findByEmail(Email);
-        pedido.setUser(usuario);
-        pedido.setEmpresa(empresaService.getEmpresaById(id));
-        int Total = opcion_pedido.getOption().getPrice() * opcion_pedido.getCantidad();
-        pedido.setPrecio(Total);
-        pedidoService.savePedido(pedido);
-        opcion_pedido.setPedido(pedido);
-        opcion_pedidoService.saveOpcion_Pedido(opcion_pedido);
-        return "redirect:/total/"+pedido.getId();
-    }
+
 
     @RequestMapping(value="/total/{id}")
     public String total(@PathVariable Integer id,Model model){

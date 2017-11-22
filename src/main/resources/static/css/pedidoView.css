@@ -8,18 +8,120 @@ body{
     color:white
 }
 
-img{
-   width:220px;
-   margin:auto;
-   display:block;
-   border-radius:50%;
+.title{
+   position:fixed;
+   width:150px;
+   height:150px;
+   border-radius:5px;
+}
+ .box{
+    position:fixed;
+    width:75%;
+    max-width:75%;
+    height:20%;
+    max-height:20%;
+    margin: 1% 1%;
+    background:rgba(0,0,0,0.5);
+    border-radius:3%;
 }
 
-.box {
+.TitleData{
+    position:absolute;
+    left:200px;
+    width:300px;
+    max-width:300px;
+    height:150px;
+    max-height:150px;
+    color:white;
+    font-size:15px;
+    line-height:15px;
+}
+
+.MainData{
+    position:absolute;
+    left:550px;
+    color:white;
+    font-size:15px;
+    line-height:15px;
+}
+
+.CajaPedido{
+   position:fixed;
+   width:75%;
+   max-width:75%;
+   height:70%;
+   max-height:70%;
+   margin: 12% 1%;
+   background:rgba(0,0,0,0.5);
+   border-radius:3%;
+   overflow-y: scroll;
+}
+
+.Cajitas{
+    float:left;
+    left:50px;
+    background:rgba(0,0,0,0.5);
+    width:300px;
+    max-width:300px;
+    height:350px;
+    max-height:350px;
+    color:white;
+    font-size:15px;
+    line-height:15px;
+    border-radius:5px;
+}
+
+.Separador{
+float:left;
+    left:50px;
+    width:70px;
+    max-width:70px;
+    height:350px;
+    max-height:350px;
+    color:white;
+    font-size:15px;
+    line-height:15px;
+    border-radius:5px;
+}
+
+.ImgOption{
+    position:relative;
+       width:170px;
+       height:170px;
+       border-radius:50%;
+       margin: auto;
+       display:block;
+}
+
+.carrito{
     position:fixed;
-      width:35%;
-      margin: 1% 32%;
-      background:rgba(0,0,0,0.5);
+    width:20%;
+    max=width:20%;
+    height:50%;
+    max-height:50%;
+    margin: 1% 78%;
+    background:rgba(0,0,0,0.5);
+    border-radius:3%;
+    border: 2px solid white;
+}
+
+.MiPedido{
+    position:relative;
+    left:10px;
+    background:rgba(0,0,0,0.5);
+    width:285px;
+    max-width:285px;
+    height:250px;
+    max-height:250px;
+    color:white;
+    font-size:15px;
+    line-height:15px;
+    border-radius:5px;
+}
+
+.Total{
+   position:relative;
+       left:10px;
 }
 
 h1, h2{
@@ -59,7 +161,7 @@ button:hover {
     opacity: 0.8;
 }
 
-label, span{
+.Op{
     color:white;
     font-size:15px;
     font-weight:bold;
