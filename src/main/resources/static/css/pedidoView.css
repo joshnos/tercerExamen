@@ -35,22 +35,28 @@ body{
     color:white;
     font-size:15px;
     line-height:15px;
+    margin:20px;
 }
 
 .MainData{
     position:absolute;
     left:550px;
+    width:500px;
+    max-width:500px;
+    height:150px;
+    max-height:150px;
     color:white;
     font-size:15px;
     line-height:15px;
+    margin:20px;
 }
 
 .CajaPedido{
    position:fixed;
    width:75%;
    max-width:75%;
-   height:70%;
-   max-height:70%;
+   height:60%;
+   max-height:60%;
    margin: 12% 1%;
    background:rgba(0,0,0,0.5);
    border-radius:3%;
@@ -69,19 +75,7 @@ body{
     font-size:15px;
     line-height:15px;
     border-radius:5px;
-}
-
-.Separador{
-float:left;
-    left:50px;
-    width:70px;
-    max-width:70px;
-    height:350px;
-    max-height:350px;
-    color:white;
-    font-size:15px;
-    line-height:15px;
-    border-radius:5px;
+    margin:20px 35px;
 }
 
 .ImgOption{
@@ -103,11 +97,11 @@ float:left;
     background:rgba(0,0,0,0.5);
     border-radius:3%;
     border: 2px solid white;
+    padding:10px 10px;
 }
 
 .MiPedido{
     position:relative;
-    left:10px;
     background:rgba(0,0,0,0.5);
     width:285px;
     max-width:285px;
@@ -117,36 +111,57 @@ float:left;
     font-size:15px;
     line-height:15px;
     border-radius:5px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
+.btn-borrar{
+    float:right;
+    background-color: #c61114;
+    color: white;
+    padding: 5px 5px;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+}
 .Total{
    position:relative;
-       left:10px;
+   left:10px;
+   color:white;
+}
+
+.titulo{
+   color:white;
 }
 
 h1, h2{
     text-align:center;
 }
 
-input[type=text] {
-    width: 80%;
-    padding: 12px 20px;
-    margin: 8px 10%;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+.price{
+    position:relative;
+    left:200px;
+    padding:0 10px;
 }
 
+.spancito{
+    position:relative;
+    left:160px;
+    relative:right;
+    padding:0 10px;
+}
+
+.opciones{
+    padding:10px;
+}
 .data{
-    width: 80%;
-    padding: 12px 20px;
-    margin: 8px 10%;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    border-bottom-style: solid;
+    border-color: white;
+    border-width: 1px;
+    padding:10px 10px;
 }
 
-button {
+.submit {
     background-color: #c61114;
     color: white;
     padding: 14px 20px;
@@ -157,7 +172,7 @@ button {
 }
 
 /* Add a hover effect for buttons */
-button:hover {
+.submit:hover, .btn-borrar:hover {
     opacity: 0.8;
 }
 
@@ -171,7 +186,7 @@ button:hover {
     margin: 8px 6%;
 }
 
-a{
+.btn-pagar{
     background-color: #c61114; /* Red */
     border: none;
     color: white;
@@ -183,6 +198,125 @@ a{
     float: right;
 }
 
-a:hover{
-    opacity: 0.8;
+.btn-pagar:hover{
+    opacity: 0.5;
+    text-decoration: none;
+    color: white;
+}
+
+.MiPedido::-webkit-scrollbar-track, .CajaPedido::-webkit-scrollbar-track
+{
+	border: 1px solid black;
+    background-color: #F5F5F5;
+}
+
+.MiPedido::-webkit-scrollbar, .CajaPedido::-webkit-scrollbar
+{
+	width: 10px;
+    background-color: #F5F5F5;
+}
+
+.MiPedido::-webkit-scrollbar-thumb, .CajaPedido::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+}
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
+  margin:none;
+}
+
+/* Links inside the navbar */
+.navbar a.btn {
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  min-width: 160px;
+  background-color: inherit;
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a.btn:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a.btn {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a.btn:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.navbartitle{
+   float: left;
+   display: block;
+   color: #f2f2f2;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+   font-size: 17px;
+}
+
+.button{
+position:absolute;
+top:620px;
+left:1400px;
+    background-color: #c61114; /* Red */
+    margin:25px 20px;
+    border: none;
+    color: white;
+    padding: 15px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius:5%;
+}
+
+.button:hover{
+   opacity: 0.8;
 }

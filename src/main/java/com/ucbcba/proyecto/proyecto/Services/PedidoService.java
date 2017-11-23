@@ -8,4 +8,6 @@ public interface PedidoService {
 
     Pedido savePedido(Pedido pedido);
 
+    void deletePedido(Integer id);
+
 }

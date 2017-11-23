@@ -3,31 +3,49 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Lista de pedidos</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link href="../static/css/listarRestaurantes.css" th:href="@{/css/listarRestaurantes.css}" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        h2{
-        color: white;
-        }
-    </style>
-
 </head>
 
-<body th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
-                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
+<body>
 
+<div class="navbar">
+    <a class="navbartitle">Pizza Hunter</a>
+    <div class="dropdown">
+        <button class="dropbtn" th:text="${user.name}"></button>
+        <div class="dropdown-content">
+            <div th:each="role : ${user.roles}" th:if="${role.name} == 'ADMIN'">
+                <a class="btn" href="/admin/empresas">Administrar</a>
+                <a class="btn" href="/admin/listar">Ver Usuarios</a>
+            </div>
+            <a class="btn" href="/logout">logout</a>
+        </div>
+    </div>
+</div>
 
 <div class="container">
-    <h2>Restaurantes Disponibles</h2>
-<div class="list-group" th:each="empresa : ${empresas}" align="center">
-    <a class="list-group-item" th:href="${'/pedido/'+ empresa.idEmpresa}">
-        <h4 class="list-group-item-heading" th:text="${empresa.nombre}"/>
-        <img class="info" th:src="${empresa.image}" alt="Paris" width="150" height="150" />
-        <p class="list-group-item-text" th:text="${empresa.descripcion}"/>
-    </a>
+    <h2 class="title">Restaurantes Disponibles</h2>
+    <div  th:each="empresa : ${empresas}">
+        <a th:href="${'/pedido/'+ empresa.idEmpresa}">
+            <div class="group" align="center">
+                <img class="info" src="http://iescarrenomiranda.es/principal/wp-content/uploads/2015/06/ciclos-formativos.jpg" th:src="${empresa.image}" alt="No tiene imagen"/>
+                <div class="inf">
+                    <h4 class="data" th:text="${empresa.nombre}">Titulo</h4>
+                    <p class="data" th:text="${empresa.descripcion}">Descripcion</p>
+                </div>
+                <div class="MainData">
+                    <p th:text="${'Calificacion: ' + empresa.calificacion}">calificacion</p>
+                    <p th:text="${'Telefono: ' + empresa.telefono}">telefono</p>
+                    <p th:text="${'Direccion del restaurante: ' + empresa.direccion}">direccion</p>
+                </div>
+
+            </div>
+        </a>
+    </div>
 </div>
-</div>
+
+<a class="button" href="/bienvenidos">Atras</a>
 
 </body>
 </html>

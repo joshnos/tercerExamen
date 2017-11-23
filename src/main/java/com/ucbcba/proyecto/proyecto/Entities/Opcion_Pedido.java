@@ -23,6 +23,13 @@ public class Opcion_Pedido {
 
     private Integer cantidad;
 
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public int getId() {
+        return Id;
+    }
 
     public Integer getCantidad() {
         return cantidad;

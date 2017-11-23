@@ -33,4 +33,9 @@ public class PedidoServiceImpl implements  PedidoService{
         return pedidoRepository.save(pedido);
     }
 
+    @Override
+    public void deletePedido(Integer id) {
+        pedidoRepository.delete(id);
+    }
+
 }

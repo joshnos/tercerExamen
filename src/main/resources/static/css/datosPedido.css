@@ -1,0 +1,277 @@
+body{
+    background-image: url(../imagenes/fondoPizza.jpg);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    background-attachment: fixed;
+    background-possition: center;
+}
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
+  margin:none;
+}
+
+/* Links inside the navbar */
+.navbar a.btn {
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  min-width: 160px;
+  background-color: inherit;
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a.btn:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a.btn {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a.btn:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.navbartitle{
+   float: left;
+   display: block;
+   color: #f2f2f2;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+   font-size: 17px;
+}
+
+.box-datos{
+   position:fixed;
+   width:75%;
+   max-width:75%;
+   height:50%;
+   max-height:50%;
+   margin:10px 10px;
+   background:rgba(0,0,0,0.5);
+   border-radius:3%;
+   color:white;
+}
+
+h2{
+   text-align:center;
+   text-margin:5px 5px;
+}
+
+.datos{
+   position:fixed;
+   width:1100px;
+   max-width:1100px;
+   height:30%;
+   max-height:30%;
+   margin:10px 25px;
+   background:rgba(0,0,0,0.5);
+   border-radius:3%;
+   color:white;
+   overflow-y: scroll;
+   overflow-x: hidden;
+}
+
+.for{
+   position:relative;
+   width:100%;
+   max-width:100%;
+   height:30%;
+   max-height:30%;
+   border-bottom-style: solid;
+   border-color: white;
+   border-width: 1px;
+}
+
+.direccion{
+   position:absolute;
+   top:60%;
+   width:75%;
+   max-width:75%;
+   height:30%;
+   max-height:30%;
+   margin:10px 10px;
+   background:rgba(0,0,0,0.5);
+   border-radius:3%;
+   color:white;
+}
+.cantidad {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button.submit {
+    background-color: #c61114;
+    color: white;
+    padding: 14px 25px;
+    margin: 8px 10%;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+
+.btn-borrar{
+    background-color: #c61114;
+    color: white;
+    padding: 5px 5px;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+}
+
+.btn-modificar{
+   background-color: #c61114;
+       color: white;
+       padding: 5px 5px;
+       border: none;
+       cursor: pointer;
+       width: 150px;
+}
+
+.btn-aceptar{
+   background-color: #c61114;
+   color: white;
+   padding: 5px 5px;
+   border: none;
+   cursor: pointer;
+   width: 80px;
+   float:right;
+}
+
+.entrada{
+    float:right;
+    margin:15px 15px;
+    padding:4px 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width:40px;
+    max-width:50px;
+}
+
+.Total{
+   position:relative;
+   top:65%;
+   width:1100px;
+   max-width:1100px;
+   height:10%;
+   max-height:10%;
+   margin:10px 25px;
+   color:white;
+}
+
+.titletotal{
+   float:left;
+   margin:10px 10px;
+}
+
+.total{
+   float:right;
+   margin:10px 70px;
+}
+
+.btn-borrar{
+    float:left;
+    margin:15px 15px;
+}
+
+.data{
+   float:left;
+   margin:20px 15px;
+}
+
+.btn-aceptar{
+   float:right;
+   margin:15px 15px;
+}
+
+.price{
+   float:right;
+   margin:20px 15px;
+}
+
+.retroseso{
+   position:absolute;
+   top:60%;
+   left:78%;
+   width:20%;
+   max-width:20%;
+   height:30%;
+   max-height:30%;
+   margin:10px 10px;
+   border-radius:3%;
+   color:white;
+}
+
+.boton{
+    background-color: #c61114; /* Red */
+    margin:10px 20px;
+    border: none;
+    color: white;
+    padding: 15px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius:5%;
+}
+
+.boton:hover{
+   opacity: 0.8;
+}

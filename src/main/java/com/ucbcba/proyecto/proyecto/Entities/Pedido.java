@@ -30,6 +30,10 @@ public class  Pedido {
 
     private boolean Estado;
 
+    public Pedido(){
+        Estado=true;
+    }
+
     public void setEstado(boolean estado) {
         Estado = estado;
     }

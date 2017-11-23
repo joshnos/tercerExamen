@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" >
+      xmlns:th="http://www.thymeleaf.org" xmlns:button="http://www.w3.org/1999/html"
+      xmlns:form="http://www.w3.org/1999/html">
 <head lang="en">
 
     <title>Pedidos</title>
     <link href="../static/css/pedidoView.css" th:href="@{/css/pedidoView.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -12,15 +14,35 @@
 </head>
 <body>
 
-<div class="carrito">
-    <h2>Mi carrito</h2>
-    <div class="MiPedido">
-        <div th:each="op: ${pedido.opcion_pedidos}">
-            <div class="Data"><label th:text="${op.option.name+' (x'+op.cantidad+')'}"></label></div>
-            <div class="Data"><label th:text="${op.option.price }"></label></div>
+<div class="navbar">
+    <a class="navbartitle">Pizza Hunter</a>
+    <div class="dropdown">
+        <button class="dropbtn" th:text="${user.name}"></button>
+        <div class="dropdown-content">
+            <div th:each="role : ${user.roles}" th:if="${role.name} == 'ADMIN'">
+                <a class="btn" href="/admin/empresas">Administrar</a>
+                <a class="btn" href="/admin/listar">Ver Usuarios</a>
+            </div>
+            <a class="btn" href="/logout">logout</a>
         </div>
     </div>
-    <div class="Total"><label th:text="${'Total: '+pedido.precio}"></label></div>
+</div>
+
+<div class="carrito">
+    <h2 class="titulo">Mi carrito</h2>
+    <div class="MiPedido">
+        <div class="opciones" th:each="op: ${pedido.opcion_pedidos}">
+            <form th:action="${'/borrar/'+op.Id}" method="post">
+                <button class="btn-borrar" type="submit">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+                <div class="data"><label th:text="${op.option.name+' (x'+op.cantidad+')'}"></label></div>
+                <div class="price"><label th:text="${op.option.price + 'Bs' }"></label></div>
+            </form>
+        </div>
+    </div>
+    <div class="Total">Total: <span class="spancito" th:text="${pedido.precio + 'Bs'}"></span></div>
+    <a class="btn-pagar" href="/continuar"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Continuar</a>
 </div>
 
 <div class="box">
@@ -36,9 +58,9 @@
     </div>
 </div>
 <div class="CajaPedido">
-    <h2>Menu</h2>
+    <h2 class="titulo">Menu</h2>
     <div th:each="op : ${empresa.options}">
-        <div class="Separador"></div>
+
         <div class="Cajitas">
             <form th:object="${top}" th:action="@{/cargar}" method="post">
                 <p class="Op" th:text="${op.name}">Hola</p>
@@ -48,11 +70,14 @@
                 <input type="hidden" name="empresa"  th:value="${empresa.idEmpresa}"/>
                 <input type="hidden" name="pedidoId"  th:value="${pedido.id}"/>
                 <div>
-                    <button type="submit">Agregar</button>
+                    <button class="submit" type="submit"><i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<a class="button" href="/Lista_de_pedidos">Atras</a>
+
 </body>
 </html>

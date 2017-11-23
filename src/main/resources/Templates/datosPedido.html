@@ -2,56 +2,95 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <title>Factura</title>
-    <style>
-        tr:nth-child(even) {
-            background-color: #FFE4B5;
-        }
-    </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <title>Datos de pedido</title>
+    <link href="../static/css/datosPedido.css" th:href="@{/css/datosPedido.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<body  th:style="'background-image: url('+@{/imagenes/fondoPizza.jpg}+'); background-repeat: no-repeat;
-                background-size:100% 100%; background-attachment: fixed; background-possition: center;  background-color:#FAFAD2;'">
-
-    <h1 align="center" style="color:white;">FACTURA</h1>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<div class="container">
-    <div th:if="${not #lists.isEmpty(datosPedido)}">
-
-        <form class="form-horizontal" th:object="${DatosPedido}" th:action="@{/{id}/factura}" method="post">
-            <input type="hidden" th:field="*{id}"/>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Razon Social:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{razonSocial}"/>
-                    <span style="color: red;" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}">Error</span>
-                </div>
-
+<body>
+<div class="navbar">
+    <a class="navbartitle">Pizza Hunter</a>
+    <div class="dropdown">
+        <button class="dropbtn" th:text="${user.name}"></button>
+        <div class="dropdown-content">
+            <div th:each="role : ${user.roles}" th:if="${role.name} == 'ADMIN'">
+                <a class="btn" href="/admin/empresas">Administrar</a>
+                <a class="btn" href="/admin/listar">Ver Usuarios</a>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">NIT:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{Nit}"/>
-                    <span style="color: red;" th:if="${#fields.hasErrors('Nit')}" th:errors="*{Nit}">Error</span>
-                </div>
+            <a class="btn" href="/logout">logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="box-datos">
+    <h2>Detalles del carrito</h2>
+    <div class="datos">
+        <div class="for" th:each="op: ${pedido.opcion_pedidos}">
+            <form th:action="${'/borrar/'+op.Id}" method="post">
+                <button class="btn-borrar" type="submit">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </form>
+            <div class="data"><label th:text="${op.option.name}">data</label></div>
+            <form th:action="${'/modificar/'+op.Id}" method="post">
+                <button class="btn-aceptar" type="submit">Modificar</button>
+                <input class="entrada" type="text" name="cantidad" th:value="${op.cantidad}"/>
+            </form>
+            <div class="price"><label th:text="${op.option.price + 'Bs' }">Price</label></div>
+        </div>
+    </div>
+    <div class="Total">
+        <label class="titletotal">Total:</label>
+        <label class="total" th:text="${pedido.precio + ' Bs'}">price</label>
+    </div>
+</div>
+
+<div class="direccion">
+    <h2>Detalles de la direccion</h2>
+    <div class="form">
+        <form th:action="@{/pagar}" method="post">
+            <input class="cantidad" type="text" placeholder="Introduzca su direccion" name="direccion" th:value="${pedido.direccion}"/>
+            <input type="hidden" name="Id_Pedido" th:value="${pedido.id}"/>
+            <div>
+                <button class="submit" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Pagar</button>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Telefono:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{telf}"/>
-                </div>
-            </div>
-            <input type="hidden" th:field="*{pedido}" value="${MiPedido}"/>
-            <button type="submit" class="btn btn-primary" style="background-color: #F4D03F">ACEPTAR</button>
         </form>
     </div>
 </div>
+
+<div class="retroseso">
+    <a class="boton" href="/Lista_de_pedidos">Cambiar de empresa</a>
+    <a class="boton" href="/pedido/continuar">Ver mas opciones</a>
+    <a class="boton" href="javascript:history.back()">Atras</a>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
 </body>
 </html>
