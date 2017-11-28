@@ -7,14 +7,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
-import java.util.*;
 
 @Controller
 public class PedidoController {
@@ -24,6 +22,7 @@ public class PedidoController {
     private PedidoService pedidoService;
     private Opcion_PedidoService opcion_pedidoService;
     private UserService userService;
+    private ZonaService zonaService;
     @Autowired
     public void setUserService(UserService userService){
         this.userService=userService;
@@ -36,7 +35,8 @@ public class PedidoController {
     public void setOptionService(OptionService optionService){this.optionService = optionService;}
     @Autowired
     public void setOpcion_pedidoService(Opcion_PedidoService opcion_pedidoService){this.opcion_pedidoService = opcion_pedidoService;}
-
+    @Autowired
+    public void setZonaService(ZonaService zonaService){this.zonaService=zonaService;}
 
     @RequestMapping(value="/pedido/{id}", method = RequestMethod.GET)
     public String Pedir(@PathVariable Integer id, Model model){
@@ -49,11 +49,11 @@ public class PedidoController {
     }
 
     @RequestMapping(value="/cargar", method = RequestMethod.POST)
-    public String Cargar(@ModelAttribute("empresa")Integer Id_Empresa, @ModelAttribute("pedidoId") Integer Id_Pedido, @ModelAttribute("OptionId") Integer Id_Option, Model model){
+    public String Cargar(@Valid Pedido pedido, @ModelAttribute("empresa")Integer Id_Empresa, @ModelAttribute("pedidoId") Integer Id_Pedido, @ModelAttribute("OptionId") Integer Id_Option, Model model){
         Opcion_Pedido opcion_pedido = new Opcion_Pedido();
         opcion_pedido.setOption(optionService.getOptionById(Id_Option));
         if(Id_Pedido==0){
-            Pedido pedido = new Pedido();
+            Pedido pedido1 = new Pedido();
             opcion_pedido.setCantidad(1);
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String Email = auth.getName(); //get logged in username
@@ -61,15 +61,15 @@ public class PedidoController {
             pedido.setUser(usuario);
             pedido.setEmpresa(empresaService.getEmpresaById(Id_Empresa));
             pedido.setPrecio(optionService.getOptionById(Id_Option).getPrice());
-            pedidoService.savePedido(pedido);
-            opcion_pedido.setPedido(pedido);
+            pedidoService.savePedido(pedido1);
+            opcion_pedido.setPedido(pedido1);
             opcion_pedidoService.saveOpcion_Pedido(opcion_pedido);
         }
         else
         {
             int Total=0;
             boolean Existe = false;
-            Pedido pedido = pedidoService.getPedidoById(Id_Pedido);
+            Pedido pedido1 = pedidoService.getPedidoById(Id_Pedido);
             for(Opcion_Pedido opcion_pedido1: pedido.getOpcion_pedidos()){
                 if(opcion_pedido1.getOption()==optionService.getOptionById(Id_Option)){
                     Existe=true;
@@ -199,7 +199,7 @@ public class PedidoController {
     @RequestMapping(value = "/pagar",method = RequestMethod.POST)
     public String pagar(@ModelAttribute("Id_Pedido")Integer Id_Pedido,@ModelAttribute("direccion")String direccion) {
         Pedido pedido = pedidoService.getPedidoById(Id_Pedido);
-        pedido.setDireccion(direccion);
+        pedido.setCalle(direccion);
         pedido.setEstado(false);
         pedidoService.savePedido(pedido);
         return "redirect:/bienvenidos";
@@ -222,7 +222,7 @@ public class PedidoController {
         NuevoPedido.setEstado(true);
         NuevoPedido.setUser(usuario);
         NuevoPedido.setPrecio(pedidoactual.getPrecio());
-        NuevoPedido.setDireccion(pedidoactual.getDireccion());
+        NuevoPedido.setCalle(pedidoactual.getCalle());
         NuevoPedido.setEmpresa(pedidoactual.getEmpresa());
         pedidoService.savePedido(NuevoPedido);
         for (Opcion_Pedido opcion_pedido:pedidoactual.getOpcion_pedidos()){

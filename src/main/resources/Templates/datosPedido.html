@@ -47,11 +47,13 @@
     </div>
 </div>
 
-<div class="direccion">
+<div class="calle">
     <h2>Detalles de la direccion</h2>
     <div class="form">
         <form th:action="@{/pagar}" method="post">
-            <input class="cantidad" type="text" placeholder="Introduzca su direccion" name="direccion" th:value="${pedido.direccion}"/>
+            <input class="cantidad" type="text" placeholder="Introduzca su calle" name="calle" th:value="${pedido.calle}"/>
+            <input class="cantidad" type="number" placeholder="Introduzca su numero de casa" name="numeroCasa" th:value="${pedido.numeroCasa}"/>
+            <input class="cantidad" type="number" placeholder="introduzc su zipCode" name="zipCode" th:value="${pedido.zipCode}"
             <input type="hidden" name="Id_Pedido" th:value="${pedido.id}"/>
             <div>
                 <button class="submit" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Pagar</button>
